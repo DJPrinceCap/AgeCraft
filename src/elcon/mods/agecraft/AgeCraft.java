@@ -48,15 +48,31 @@ public class AgeCraft {
 		ACVersion.execute();
 		
 		config.save();
+		
+		for(int i = 0; i < Age.ages.length; i++) {
+			if(Age.ages[i] != null) {
+				Age.ages[i].preInit();
+			}
+		}
 	}
 	
 	@Init
 	public void init(FMLInitializationEvent event) {
 		proxy.registerRenderInformation();
+
+		for(int i = 0; i < Age.ages.length; i++) {
+			if(Age.ages[i] != null) {
+				Age.ages[i].init();
+			}
+		}
 	}
 	
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
-		
+		for(int i = 0; i < Age.ages.length; i++) {
+			if(Age.ages[i] != null) {
+				Age.ages[i].postInit();
+			}
+		}
 	}
 }
