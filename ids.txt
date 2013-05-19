@@ -34,7 +34,7 @@
 
 
 ======= Item IDs ======
-12500-12999 	Core blocks
+12500-12999 	Core items
 13000-13099		Prehistory
 13100-13199		Agriculture Age
 13200-13299		Ancient Egypt
@@ -45,3 +45,10 @@
 13700-13799		Industrial Age
 13800-13899		Modern Age
 13900-13999		Future
+
+
+======= Packet IDs ======
+0-74	Server to client packets
+75-99	Client to server packets
+100+ 	TileEntity packets
+

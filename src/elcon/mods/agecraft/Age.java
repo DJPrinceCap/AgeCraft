@@ -35,6 +35,13 @@ public class Age {
 		tab = creativeTab;
 	}
 	
+	public void clientProxy() {
+		
+	}
+	
+	public void serverProxy() {
+		
+	}
 	
 	public void preInit() {
 		

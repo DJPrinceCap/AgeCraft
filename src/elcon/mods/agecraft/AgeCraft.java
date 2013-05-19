@@ -16,7 +16,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 @Mod(modid = ACReference.MOD_ID, name = ACReference.NAME, version = ACReference.VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = ACPacketHandler.class, channels = {"ACTile"})
 public class AgeCraft {
 
 	@Instance(ACReference.MOD_ID)
@@ -65,6 +65,9 @@ public class AgeCraft {
 				Age.ages[i].init();
 			}
 		}
+		
+		LanguageRegistry.instance().addStringLocalization("itemGroup.AgeCraft", "en_US", "AgeCraft");
+		LanguageRegistry.instance().addStringLocalization("itemGroup.Prehistory", "en_US", "Prehistory");
 	}
 	
 	@PostInit
