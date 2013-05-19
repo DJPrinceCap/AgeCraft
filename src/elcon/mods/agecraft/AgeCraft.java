@@ -36,7 +36,6 @@ public class AgeCraft {
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		ACConfig.load(config);
-		config.save();
 		
 		LanguageRegistry.instance().addStringLocalization("agecraft.version.init_log_message", "en_US", "Initializing remote version check against remote version authority, located at");
 		LanguageRegistry.instance().addStringLocalization("agecraft.version.uninitialized", "en_US", "Remote version check failed to initialize properly");
@@ -47,11 +46,13 @@ public class AgeCraft {
 		LanguageRegistry.instance().addStringLocalization("agecraft.version.mc_version_not_found", "en_US", "Unable to find a version of @MOD_NAME@ for @MINECRAFT_VERSION@ in the remote version authority");
 		
 		ACVersion.execute();
+		
+		config.save();
 	}
 	
 	@Init
 	public void init(FMLInitializationEvent event) {
-		
+		proxy.registerRenderInformation();
 	}
 	
 	@PostInit

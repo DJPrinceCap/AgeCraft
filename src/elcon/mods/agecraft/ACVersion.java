@@ -65,7 +65,7 @@ public class ACVersion implements Runnable {
 					if(!ACConfig.LAST_DISCOVERED_VERSION.equalsIgnoreCase(remoteVersion)) {
 						ACConfig.set(ACConfig.CATEGORY_VERSION, "last_discovered_version", remoteVersion);
 					}
-
+					
 					if(remoteVersion.equalsIgnoreCase(getVersionForCheck())) {
 						result = CURRENT;
 					} else {
