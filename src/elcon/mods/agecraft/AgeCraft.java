@@ -1,6 +1,7 @@
 package elcon.mods.agecraft;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.Mod;
@@ -29,6 +30,8 @@ public class AgeCraft {
 	
 	public static File minecraftDir;
 	
+	public ArrayList<ACComponent> components = new ArrayList<ACComponent>();
+	
 	public AgeCraftCore core;
 	public ACWorldGenerator worldGenerator;
 	
@@ -55,40 +58,50 @@ public class AgeCraft {
 		config.save();
 		
 		core = new AgeCraftCore();
-		core.preInit();
 		
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].preInit();
 			}
 		}
+		for(ACComponent component : components) {
+			component.preInit();
+		}
 	}
 	
 	@Init
 	public void init(FMLInitializationEvent event) {
-		proxy.registerRenderInformation();
-
-		core.init();
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].init();
 			}
+		}
+		for(ACComponent component : components) {
+			component.init();
 		}
 		
 		worldGenerator = new ACWorldGenerator();
 		GameRegistry.registerWorldGenerator(worldGenerator);
 		
 		LanguageRegistry.instance().addStringLocalization("itemGroup.AgeCraft", "en_US", "AgeCraft");
+		LanguageRegistry.instance().addStringLocalization("itemGroup.Metals", "en_US", "Metals");
+		LanguageRegistry.instance().addStringLocalization("itemGroup.Wood", "en_US", "Wood");
+		
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Prehistory", "en_US", "Prehistory");
+		LanguageRegistry.instance().addStringLocalization("itemGroup.Agriculture", "en_US", "Agriculture");
+		
+		proxy.registerRenderInformation();
 	}
 	
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
-		core.postInit();
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].postInit();
 			}
+		}
+		for(ACComponent component : components) {
+			component.postInit();
 		}
 	}
 }

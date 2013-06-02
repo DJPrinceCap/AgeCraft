@@ -1,5 +1,6 @@
 package elcon.mods.agecraft.core;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -7,9 +8,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import elcon.mods.agecraft.ACComponent;
 import elcon.mods.agecraft.core.blocks.BlockStoneLayered;
 
-public class AgeCraftCore {
+public class AgeCraftCore extends ACComponent {
+	
+	public Metals ores;
+	public Trees trees;
+	
+	public AgeCraftCore() {
+		super();
+		ores = new Metals();
+		trees = new Trees();
+	}
 	
 	public void preInit() {
 		

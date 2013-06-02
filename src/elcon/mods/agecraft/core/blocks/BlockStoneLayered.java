@@ -25,11 +25,6 @@ public class BlockStoneLayered extends BlockStone {
 	}
 	
 	@Override
-	public void onBlockAdded(World world, int x, int y, int z) {
-		updateHeight(world, x, y, z, world.rand);
-	}
-	
-	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess blockAccess, int x, int y, int z) {
 		int meta = blockAccess.getBlockMetadata(x, y, z);
@@ -44,7 +39,7 @@ public class BlockStoneLayered extends BlockStone {
 	
 	public void updateHeight(World world, int x, int y, int z, Random random) {
 		int i;
-		for(i = 0; y > ((i * LAYER_SIZE) + (-4 + random.nextInt(9))); i++) {
+		for(i = 0; y > ((i * LAYER_SIZE) + (-2 + random.nextInt(5))); i++) {
 		}
 		world.setBlockMetadataWithNotify(x, y, z, i, 0);
 	}
