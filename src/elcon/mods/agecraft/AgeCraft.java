@@ -13,7 +13,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import elcon.mods.agecraft.core.AgeCraftCore;
 
 @Mod(modid = ACReference.MOD_ID, name = ACReference.NAME, version = ACReference.VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, packetHandler = ACPacketHandler.class, channels = {"ACTile"})
@@ -26,6 +28,9 @@ public class AgeCraft {
     public static ACCommonProxy proxy;
 	
 	public static File minecraftDir;
+	
+	public AgeCraftCore core;
+	public ACWorldGenerator worldGenerator;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
@@ -49,6 +54,9 @@ public class AgeCraft {
 		
 		config.save();
 		
+		core = new AgeCraftCore();
+		core.preInit();
+		
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].preInit();
@@ -60,11 +68,15 @@ public class AgeCraft {
 	public void init(FMLInitializationEvent event) {
 		proxy.registerRenderInformation();
 
+		core.init();
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].init();
 			}
 		}
+		
+		worldGenerator = new ACWorldGenerator();
+		GameRegistry.registerWorldGenerator(worldGenerator);
 		
 		LanguageRegistry.instance().addStringLocalization("itemGroup.AgeCraft", "en_US", "AgeCraft");
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Prehistory", "en_US", "Prehistory");
@@ -72,6 +84,7 @@ public class AgeCraft {
 	
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
+		core.postInit();
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].postInit();
