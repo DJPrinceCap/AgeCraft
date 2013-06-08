@@ -114,7 +114,7 @@ public class BlockCampfire extends BlockContainer {
 	
 	@Override
 	public int getRenderType() {
-		return -1;
+		return 100;
 	}
 	
 	public static void updateCampfireBlockState(boolean enabled, World world, int x, int y, int z) {

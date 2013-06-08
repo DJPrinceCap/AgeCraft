@@ -1,5 +1,10 @@
 package elcon.mods.agecraft;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import elcon.mods.agecraft.prehistory.gui.GuiSharpener;
+import elcon.mods.agecraft.prehistory.gui.InventorySharpener;
+
 public class ACClientProxy extends ACCommonProxy {
 
 	@Override
@@ -12,5 +17,13 @@ public class ACClientProxy extends ACCommonProxy {
 		for(ACComponent component : AgeCraft.instance.components) {
 			component.clientProxy();
 		}
+	}
+	
+	@Override
+	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		if(id == 10) {
+			return new GuiSharpener(new InventorySharpener());
+		}
+		return null;
 	}
 }

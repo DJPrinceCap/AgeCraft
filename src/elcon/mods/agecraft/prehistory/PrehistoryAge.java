@@ -2,21 +2,28 @@ package elcon.mods.agecraft.prehistory;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import elcon.mods.agecraft.ACCreativeTabs;
 import elcon.mods.agecraft.Age;
 import elcon.mods.agecraft.prehistory.blocks.BlockCampfire;
+import elcon.mods.agecraft.prehistory.blocks.BlockRock;
+import elcon.mods.agecraft.prehistory.items.ItemFakeStone;
+import elcon.mods.agecraft.prehistory.items.ItemRock;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 import elcon.mods.agecraft.prehistory.tileentities.renderers.TileEntityRendererCampfire;
 import elcon.mods.core.ElConCore;
 
 public class PrehistoryAge extends Age {
 	
+	public PrehistoryBlockRenderingHandler blockRenderingHandler;
+	
 	public static Block campfireOff;
 	public static Block campfireOn;
 	public static Block rockBlock;
 	
+	public static Item fakeStone;
 	public static Item rock;
 	
 	public PrehistoryAge(int id) {
@@ -27,19 +34,25 @@ public class PrehistoryAge extends Age {
 	public void init() {
 		//init blocks
 		campfireOff = new BlockCampfire(3000, false).setCreativeTab(tab).setUnlocalizedName("campfireOff");
-		campfireOn = new BlockCampfire(3001, true).setCreativeTab(tab).setUnlocalizedName("campfireOn");
+		campfireOn = new BlockCampfire(3001, true).setUnlocalizedName("campfireOn");
+		rockBlock = new BlockRock(3002).setCreativeTab(tab).setUnlocalizedName("rock");
 		
 		//register blocks
 		GameRegistry.registerBlock(campfireOff, "AC_prehistory_campfireOff");
-		GameRegistry.registerBlock(campfireOff, "AC_prehistory_campfireOn");
+		GameRegistry.registerBlock(campfireOn, "AC_prehistory_campfireOn");
+		GameRegistry.registerBlock(rockBlock, "AC_prehistory_rock");
 		
 		//init items
+		fakeStone = new ItemFakeStone(12000).setUnlocalizedName("fakeStone");
+		rock = new ItemRock(3002 - 256).setCreativeTab(tab).setUnlocalizedName("rock");
 		
 		//add block names
 		LanguageRegistry.addName(campfireOff, "Campfire");
 		LanguageRegistry.addName(campfireOn, "Campfire");
+		LanguageRegistry.addName(rockBlock, "Rock");
 		
 		//add item names
+		LanguageRegistry.addName(rock, "Rock");
 	}
 	
 	@Override
@@ -49,6 +62,13 @@ public class PrehistoryAge extends Age {
 	
 	@Override
 	public void clientProxy() {
+		blockRenderingHandler = new PrehistoryBlockRenderingHandler();
+		
+		//register block rendering handler
+		RenderingRegistry.registerBlockHandler(100, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(101, blockRenderingHandler);
+		
+		//register tile entity renderers
 		ElConCore.registerTileEntityRenderer(TileEntityCampfire.class, new TileEntityRendererCampfire());
 	}
 }

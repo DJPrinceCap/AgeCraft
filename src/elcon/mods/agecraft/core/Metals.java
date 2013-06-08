@@ -3,13 +3,11 @@ package elcon.mods.agecraft.core;
 import net.minecraft.block.Block;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import elcon.mods.agecraft.ACComponent;
 import elcon.mods.agecraft.core.blocks.BlockOre;
-import elcon.mods.core.ElConCore;
-import elcon.mods.core.render.BlockOverlayRenderingHandler;
+import elcon.mods.agecraft.core.blocks.BlockOreStorage;
 import elcon.mods.core.render.ItemBlockOverlayRenderer;
 
 public class Metals extends ACComponent {
@@ -44,6 +42,7 @@ public class Metals extends ACComponent {
 	public static Block oreBerylGreen;
 	public static Block oreEmerald;
 	public static Block oreJade;
+	public static Block oreLapis;
 	public static Block oreOnyx;
 	public static Block oreOpal;
 	public static Block orePyrite;
@@ -54,7 +53,46 @@ public class Metals extends ACComponent {
 	public static Block oreTopaz;
 	public static Block oreTurquoise;
 	
-	public static Block oreAmber;
+	public static Block blockCoal;
+	public static Block blockCopper;
+	public static Block blockTin;
+	public static Block blockIron;
+	public static Block blockSilver;
+	public static Block blockGold;
+	public static Block blockRedstone;
+	public static Block blockDiamond;
+	public static Block blockAluminium;
+	public static Block blockBauxite;
+	public static Block blockCobalt;
+	public static Block blockLead;
+	public static Block blockManganese;
+	public static Block blockMercury;
+	public static Block blockNickel;
+	public static Block blockPlatinum;
+	public static Block blockSulfur;
+	public static Block blockTungsten;
+	public static Block blockUranium;
+	public static Block blockZinc;
+	public static Block blockMithril;
+	public static Block blockAdamantite;
+	
+	public static Block blockAmethyst;
+	public static Block blockBerylRed;
+	public static Block blockBerylYellow;
+	public static Block blockBerylBlue;
+	public static Block blockBerylGreen;
+	public static Block blockEmerald;
+	public static Block blockJade;
+	public static Block blockLapis;
+	public static Block blockOnyx;
+	public static Block blockOpal;
+	public static Block blockPyrite;
+	public static Block blockQuartz;
+	public static Block blockRuby;
+	public static Block blockSapphire;
+	public static Block blockTigerEye;
+	public static Block blockTopaz;
+	public static Block blockTurquoise;
 	
 	public void preInit() {
 		
@@ -92,17 +130,57 @@ public class Metals extends ACComponent {
 		oreBerylGreen = new BlockOre(2526).setUnlocalizedName("oreBerylGreen");
 		oreEmerald = new BlockOre(2527).setUnlocalizedName("oreEmerald");
 		oreJade = new BlockOre(2528).setUnlocalizedName("oreJade");
-		oreOnyx = new BlockOre(2529).setUnlocalizedName("oreOnyx");
-		oreOpal = new BlockOre(2530).setUnlocalizedName("oreOpal");
-		orePyrite = new BlockOre(2531).setUnlocalizedName("orePyrite");
-		oreQuartz = new BlockOre(2532).setUnlocalizedName("oreQuartz");
-		oreRuby = new BlockOre(2533).setUnlocalizedName("oreRuby");
-		oreSapphire = new BlockOre(2534).setUnlocalizedName("oreSapphire");
-		oreTigerEye = new BlockOre(2535).setUnlocalizedName("oreTigerEye");
-		oreTopaz = new BlockOre(2536).setUnlocalizedName("oreTopaz");
-		oreTurquoise = new BlockOre(2537).setUnlocalizedName("oreTurquoise");
+		oreLapis = new BlockOre(2529).setUnlocalizedName("oreLapis");
+		oreOnyx = new BlockOre(2530).setUnlocalizedName("oreOnyx");
+		oreOpal = new BlockOre(2532).setUnlocalizedName("oreOpal");
+		orePyrite = new BlockOre(2533).setUnlocalizedName("orePyrite");
+		oreQuartz = new BlockOre(2534).setUnlocalizedName("oreQuartz");
+		oreRuby = new BlockOre(2535).setUnlocalizedName("oreRuby");
+		oreSapphire = new BlockOre(2536).setUnlocalizedName("oreSapphire");
+		oreTigerEye = new BlockOre(2537).setUnlocalizedName("oreTigerEye");
+		oreTopaz = new BlockOre(2538).setUnlocalizedName("oreTopaz");
+		oreTurquoise = new BlockOre(2539).setUnlocalizedName("oreTurquoise");
 		
-		oreAmber = new BlockOre(2538).setUnlocalizedName("oreAmber");
+		blockCoal = new BlockOreStorage(2540).setUnlocalizedName("blockCoal");
+		blockCopper = new BlockOreStorage(2541).setUnlocalizedName("blockCopper");
+		blockTin = new BlockOreStorage(2542).setUnlocalizedName("blockTin");
+		blockIron = new BlockOreStorage(2543).setUnlocalizedName("blockIron");
+		blockSilver = new BlockOreStorage(2544).setUnlocalizedName("blockSilver");
+		blockGold = new BlockOreStorage(2545).setUnlocalizedName("blockGold");
+		blockRedstone = new BlockOreStorage(2546).setUnlocalizedName("blockRedstone");
+		blockDiamond = new BlockOreStorage(2547).setUnlocalizedName("blockDiamond");
+		blockAluminium = new BlockOreStorage(2548).setUnlocalizedName("blockAluminium");
+		blockBauxite = new BlockOreStorage(2549).setUnlocalizedName("blockBauxite");
+		blockCobalt = new BlockOreStorage(2550).setUnlocalizedName("blockCobalt");
+		blockLead = new BlockOreStorage(2551).setUnlocalizedName("blockLead");
+		blockManganese = new BlockOreStorage(2552).setUnlocalizedName("blockManganese");
+		blockMercury = new BlockOreStorage(2553).setUnlocalizedName("blockMercury");
+		blockNickel = new BlockOreStorage(2554).setUnlocalizedName("blockNickel");
+		blockPlatinum = new BlockOreStorage(2555).setUnlocalizedName("blockPlatinum");
+		blockSulfur = new BlockOreStorage(2556).setUnlocalizedName("blockSulfur");
+		blockTungsten = new BlockOreStorage(2557).setUnlocalizedName("blockTungsten");
+		blockUranium = new BlockOreStorage(2558).setUnlocalizedName("blockUranium");
+		blockZinc = new BlockOreStorage(2559).setUnlocalizedName("blockZinc");
+		blockMithril = new BlockOreStorage(2560).setUnlocalizedName("blockMithril");
+		blockAdamantite = new BlockOreStorage(2561).setUnlocalizedName("blockAdamantite");
+		
+		blockAmethyst = new BlockOreStorage(2562).setUnlocalizedName("blockAmethyst");
+		blockBerylRed = new BlockOreStorage(2563).setUnlocalizedName("blockBerylRed");
+		blockBerylYellow = new BlockOreStorage(2564).setUnlocalizedName("blockBerylYellow");
+		blockBerylBlue = new BlockOreStorage(2565).setUnlocalizedName("blockBerylBlue");
+		blockBerylGreen = new BlockOreStorage(2566).setUnlocalizedName("blockBerylGreen");
+		blockEmerald = new BlockOreStorage(2567).setUnlocalizedName("blockEmerald");
+		blockJade = new BlockOreStorage(2568).setUnlocalizedName("blockJade");
+		blockLapis = new BlockOreStorage(2569).setUnlocalizedName("blockLapis");
+		blockOnyx = new BlockOreStorage(2570).setUnlocalizedName("blockOnyx");
+		blockOpal = new BlockOreStorage(2571).setUnlocalizedName("blockOpal");
+		blockPyrite = new BlockOreStorage(2572).setUnlocalizedName("blockPyrite");
+		blockQuartz = new BlockOreStorage(2573).setUnlocalizedName("blockQuartz");
+		blockRuby = new BlockOreStorage(2574).setUnlocalizedName("blockRuby");
+		blockSapphire = new BlockOreStorage(2575).setUnlocalizedName("blockSapphire");
+		blockTigerEye = new BlockOreStorage(2576).setUnlocalizedName("blockTigerEye");
+		blockTopaz = new BlockOreStorage(2577).setUnlocalizedName("blockTopaz");
+		blockTurquoise = new BlockOreStorage(2578).setUnlocalizedName("blockTurquoise");
 		
 		//register blocks
 		GameRegistry.registerBlock(oreCoal, "AC_oreCoal");
@@ -135,6 +213,7 @@ public class Metals extends ACComponent {
 		GameRegistry.registerBlock(oreBerylGreen, "AC_oreBerylGreen");
 		GameRegistry.registerBlock(oreEmerald, "AC_oreEmerald");
 		GameRegistry.registerBlock(oreJade, "AC_oreJade");
+		GameRegistry.registerBlock(oreLapis, "AC_oreLapis");
 		GameRegistry.registerBlock(oreOnyx, "AC_oreOnyx");
 		GameRegistry.registerBlock(oreOpal, "AC_oreOpal");
 		GameRegistry.registerBlock(orePyrite, "AC_orePyrite");
@@ -145,7 +224,46 @@ public class Metals extends ACComponent {
 		GameRegistry.registerBlock(oreTopaz, "AC_oreTopaz");
 		GameRegistry.registerBlock(oreTurquoise, "AC_oreTurquoise");
 		
-		GameRegistry.registerBlock(oreAmber, "AC_oreAmber");
+		GameRegistry.registerBlock(blockCoal, "AC_blockCoal");
+		GameRegistry.registerBlock(blockCopper, "AC_blockCopper");
+		GameRegistry.registerBlock(blockTin, "AC_blockTin");
+		GameRegistry.registerBlock(blockIron, "AC_blockIron");
+		GameRegistry.registerBlock(blockSilver, "AC_blockSilver");
+		GameRegistry.registerBlock(blockGold, "AC_blockGold");
+		GameRegistry.registerBlock(blockRedstone, "AC_blockRedstone");
+		GameRegistry.registerBlock(blockDiamond, "AC_blockDiamond");
+		GameRegistry.registerBlock(blockAluminium, "AC_blockAluminium");
+		GameRegistry.registerBlock(blockBauxite, "AC_blockBauxite");
+		GameRegistry.registerBlock(blockCobalt, "AC_blockCobalt");
+		GameRegistry.registerBlock(blockLead, "AC_blockLead");
+		GameRegistry.registerBlock(blockManganese, "AC_blockManganese");
+		GameRegistry.registerBlock(blockMercury, "AC_blockMercury");
+		GameRegistry.registerBlock(blockNickel, "AC_blockNickel");
+		GameRegistry.registerBlock(blockPlatinum, "AC_blockPlatinum");
+		GameRegistry.registerBlock(blockSulfur, "AC_blockSulfur");
+		GameRegistry.registerBlock(blockTungsten, "AC_blockTungsten");
+		GameRegistry.registerBlock(blockUranium, "AC_blockUranium");
+		GameRegistry.registerBlock(blockZinc, "AC_blockZinc");
+		GameRegistry.registerBlock(blockMithril, "AC_blockMithril");
+		GameRegistry.registerBlock(blockAdamantite, "AC_blockAdamantite");
+		
+		GameRegistry.registerBlock(blockAmethyst, "AC_blockAmethyst");
+		GameRegistry.registerBlock(blockBerylRed, "AC_blockBerylRed");
+		GameRegistry.registerBlock(blockBerylYellow, "AC_blockBerylYellow");
+		GameRegistry.registerBlock(blockBerylBlue, "AC_blockBerylBlue");
+		GameRegistry.registerBlock(blockBerylGreen, "AC_blockBerylGreen");
+		GameRegistry.registerBlock(blockEmerald, "AC_blockEmerald");
+		GameRegistry.registerBlock(blockJade, "AC_blockJade");
+		GameRegistry.registerBlock(blockLapis, "AC_blockLapis");
+		GameRegistry.registerBlock(blockOnyx, "AC_blockOnyx");
+		GameRegistry.registerBlock(blockOpal, "AC_blockOpal");
+		GameRegistry.registerBlock(blockPyrite, "AC_blockPyrite");
+		GameRegistry.registerBlock(blockQuartz, "AC_blockQuartz");
+		GameRegistry.registerBlock(blockRuby, "AC_blockRuby");
+		GameRegistry.registerBlock(blockSapphire, "AC_blockSapphire");
+		GameRegistry.registerBlock(blockTigerEye, "AC_blockTigerEye");
+		GameRegistry.registerBlock(blockTopaz, "AC_blockTopaz");
+		GameRegistry.registerBlock(blockTurquoise, "AC_blockTurquoise");
 		
 		//add block names
 		LanguageRegistry.addName(oreCoal, "Coal Ore");
@@ -178,6 +296,7 @@ public class Metals extends ACComponent {
 		LanguageRegistry.addName(oreBerylGreen, "BerylGreen Ore");
 		LanguageRegistry.addName(oreEmerald, "Emerald Ore");
 		LanguageRegistry.addName(oreJade, "Jade Ore");
+		LanguageRegistry.addName(oreLapis, "Lapis Lazuli Ore");
 		LanguageRegistry.addName(oreOnyx, "Onyx Ore");
 		LanguageRegistry.addName(oreOpal, "Opal Ore");
 		LanguageRegistry.addName(orePyrite, "Pyrite Ore");
@@ -188,7 +307,46 @@ public class Metals extends ACComponent {
 		LanguageRegistry.addName(oreTopaz, "Topaz Ore");
 		LanguageRegistry.addName(oreTurquoise, "Turquoise Ore");
 		
-		LanguageRegistry.addName(oreAmber, "Amber Ore");
+		LanguageRegistry.addName(blockCoal, "Coal Block");
+		LanguageRegistry.addName(blockCopper, "Copper Block");
+		LanguageRegistry.addName(blockTin, "Tin Block");
+		LanguageRegistry.addName(blockIron, "Iron Block");
+		LanguageRegistry.addName(blockSilver, "Silver Block");
+		LanguageRegistry.addName(blockGold, "Gold Block");
+		LanguageRegistry.addName(blockRedstone, "Redstone Block");
+		LanguageRegistry.addName(blockDiamond, "Diamond Block");
+		LanguageRegistry.addName(blockAluminium, "Aluminium Block");
+		LanguageRegistry.addName(blockBauxite, "Bauxite Block");
+		LanguageRegistry.addName(blockCobalt, "Cobalt Block");
+		LanguageRegistry.addName(blockLead, "Lead Block");
+		LanguageRegistry.addName(blockManganese, "Manganese Block");
+		LanguageRegistry.addName(blockMercury, "Mercury Block");
+		LanguageRegistry.addName(blockNickel, "Nickel Block");
+		LanguageRegistry.addName(blockPlatinum, "Platinum Block");
+		LanguageRegistry.addName(blockSulfur, "Sulfur Block");
+		LanguageRegistry.addName(blockTungsten, "Tungsten Block");
+		LanguageRegistry.addName(blockUranium, "Uranium Block");
+		LanguageRegistry.addName(blockZinc, "Zinc Block");
+		LanguageRegistry.addName(blockMithril, "Mithril Block");
+		LanguageRegistry.addName(blockAdamantite, "Adamantite Block");
+		
+		LanguageRegistry.addName(blockAmethyst, "Amethyst Block");
+		LanguageRegistry.addName(blockBerylRed, "BerylRed Block");
+		LanguageRegistry.addName(blockBerylYellow, "BerylYellow Block");
+		LanguageRegistry.addName(blockBerylBlue, "BerylBlue Block");
+		LanguageRegistry.addName(blockBerylGreen, "BerylGreen Block");
+		LanguageRegistry.addName(blockEmerald, "Emerald Block");
+		LanguageRegistry.addName(blockJade, "Jade Block");
+		LanguageRegistry.addName(blockLapis, "Lapis Lazuli Block");
+		LanguageRegistry.addName(blockOnyx, "Onyx Block");
+		LanguageRegistry.addName(blockOpal, "Opal Block");
+		LanguageRegistry.addName(blockPyrite, "Pyrite Block");
+		LanguageRegistry.addName(blockQuartz, "Quartz Block");
+		LanguageRegistry.addName(blockRuby, "Ruby Block");
+		LanguageRegistry.addName(blockSapphire, "Sapphire Block");
+		LanguageRegistry.addName(blockTigerEye, "TigerEye Block");
+		LanguageRegistry.addName(blockTopaz, "Topaz Block");
+		LanguageRegistry.addName(blockTurquoise, "Turquoise Block");
 		
 		//register ores
 		OreDictionary.registerOre("oreCoal", oreCoal);
@@ -219,6 +377,7 @@ public class Metals extends ACComponent {
 		OreDictionary.registerOre("oreBerylGreen", oreBerylGreen);
 		OreDictionary.registerOre("oreEmerald", oreEmerald);
 		OreDictionary.registerOre("oreJade", oreJade);
+		OreDictionary.registerOre("oreLapis", oreLapis);
 		OreDictionary.registerOre("oreOnyx", oreOnyx);
 		OreDictionary.registerOre("oreOpal", oreOpal);
 		OreDictionary.registerOre("orePyrite", orePyrite);
@@ -229,7 +388,46 @@ public class Metals extends ACComponent {
 		OreDictionary.registerOre("oreTopaz", oreTopaz);
 		OreDictionary.registerOre("oreTurquoise", oreTurquoise);
 		
-		OreDictionary.registerOre("oreAmber", oreAmber);
+		OreDictionary.registerOre("blockCoal", blockCoal);
+		OreDictionary.registerOre("blockCopper", blockCopper);
+		OreDictionary.registerOre("blockTin", blockTin);
+		OreDictionary.registerOre("blockIron", blockIron);
+		OreDictionary.registerOre("blockSilver", blockSilver);
+		OreDictionary.registerOre("blockGold", blockGold);
+		OreDictionary.registerOre("blockRedstone", blockRedstone);
+		OreDictionary.registerOre("blockDiamond", blockDiamond);
+		OreDictionary.registerOre("blockAluminium", blockAluminium);
+		OreDictionary.registerOre("blockBauxite", blockBauxite);
+		OreDictionary.registerOre("blockCobalt", blockCobalt);
+		OreDictionary.registerOre("blockLead", blockLead);
+		OreDictionary.registerOre("blockManganese", blockManganese);
+		OreDictionary.registerOre("blockMercury", blockMercury);
+		OreDictionary.registerOre("blockNickel", blockNickel);
+		OreDictionary.registerOre("blockPlatinum", blockPlatinum);
+		OreDictionary.registerOre("blockSulfur", blockSulfur);
+		OreDictionary.registerOre("blockTungsten", blockTungsten);
+		OreDictionary.registerOre("blockUranium", blockUranium);
+		OreDictionary.registerOre("blockZinc", blockZinc);
+		OreDictionary.registerOre("blockMithril", blockMithril);
+		OreDictionary.registerOre("blockAdamantite", blockAdamantite);
+		
+		OreDictionary.registerOre("blockAmethyst", blockAmethyst);
+		OreDictionary.registerOre("blockBerylRed", blockBerylRed);
+		OreDictionary.registerOre("blockBerylYellow", blockBerylYellow);
+		OreDictionary.registerOre("blockBerylBlue", blockBerylBlue);
+		OreDictionary.registerOre("blockBerylGreen", blockBerylGreen);
+		OreDictionary.registerOre("blockEmerald", blockEmerald);
+		OreDictionary.registerOre("blockJade", blockJade);
+		OreDictionary.registerOre("blockLapis", blockLapis);
+		OreDictionary.registerOre("blockOnyx", blockOnyx);
+		OreDictionary.registerOre("blockOpal", blockOpal);
+		OreDictionary.registerOre("blockPyrite", blockPyrite);
+		OreDictionary.registerOre("blockQuartz", blockQuartz);
+		OreDictionary.registerOre("blockRuby", blockRuby);
+		OreDictionary.registerOre("blockSapphire", blockSapphire);
+		OreDictionary.registerOre("blockTigerEye", blockTigerEye);
+		OreDictionary.registerOre("blockTopaz", blockTopaz);
+		OreDictionary.registerOre("blockTurquoise", blockTurquoise);
 	}
 	
 	public void postInit() {
@@ -237,7 +435,7 @@ public class Metals extends ACComponent {
 	}
 	
 	public void clientProxy() {
-		for(int i = 2500; i <= 2538; i++){
+		for(int i = 2500; i <= 2539; i++){
 			MinecraftForgeClient.registerItemRenderer(i, new ItemBlockOverlayRenderer());
 		}
 	}

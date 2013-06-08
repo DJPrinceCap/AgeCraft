@@ -52,3 +52,28 @@
 75-99	Client to server packets
 100+ 	TileEntity packets
 
+======= Block Render IDs ======
+100-199 	Core blocks
+200-299		Prehistory
+300-399		Agriculture Age
+400-499		Ancient Egypt
+500-599		Ancient China
+600-699		Roman/Greek Age
+700-799		Middle Ages
+800-899		Early Modern Age
+900-999		Industrial Age
+1000-1099	Modern Age
+1100-1199	Future
+
+======= GUI IDs ======
+0-9			Core
+10-19		Prehistory Age
+20-29		Agriculture Age
+30-39		Ancient Egypt
+40-49		Ancient China
+50-59		Roman/Greek Age
+60-69		Middle Ages
+70-79		Early Modern Age
+80-89		Industrial Age
+90-99		Modern Age
+100-199		Future

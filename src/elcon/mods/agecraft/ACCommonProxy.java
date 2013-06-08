@@ -1,6 +1,12 @@
 package elcon.mods.agecraft;
 
-public class ACCommonProxy {
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import cpw.mods.fml.common.network.IGuiHandler;
+import elcon.mods.agecraft.prehistory.gui.ContainerSharpener;
+import elcon.mods.agecraft.prehistory.gui.InventorySharpener;
+
+public class ACCommonProxy implements IGuiHandler {
 
 	public void registerRenderInformation() {
 		for(int i = 0; i < Age.ages.length; i++) {
@@ -11,5 +17,18 @@ public class ACCommonProxy {
 		for(ACComponent component : AgeCraft.instance.components) {
 			component.serverProxy();
 		}
+	}
+
+	@Override
+	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		if(id == 10) {
+			return new ContainerSharpener(player, new InventorySharpener());
+		}		
+		return null;
+	}
+
+	@Override
+	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+		return null;
 	}
 }
