@@ -2,6 +2,7 @@ package elcon.mods.agecraft.prehistory;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -15,7 +16,6 @@ import elcon.mods.agecraft.prehistory.items.ItemRockTanningTool;
 import elcon.mods.agecraft.prehistory.items.ItemRockTool;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 import elcon.mods.agecraft.prehistory.tileentities.renderers.TileEntityRendererCampfire;
-import elcon.mods.core.ElConCore;
 
 public class PrehistoryAge extends Age {
 	
@@ -81,6 +81,6 @@ public class PrehistoryAge extends Age {
 		RenderingRegistry.registerBlockHandler(101, blockRenderingHandler);
 		
 		//register tile entity renderers
-		ElConCore.registerTileEntityRenderer(TileEntityCampfire.class, new TileEntityRendererCampfire());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfire.class, new TileEntityRendererCampfire());
 	}
 }

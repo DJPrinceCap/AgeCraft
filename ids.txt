@@ -15,8 +15,8 @@
 
 ======= Biome IDs ======
 30-50	Prehistoric Biomes
-50-70	Normal Biomes
-70+ 	Other biomes
+50-100	Normal Biomes
+100+ 	Other biomes
 
 
 ======= Block IDs ======

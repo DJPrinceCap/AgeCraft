@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -21,6 +22,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import elcon.mods.agecraft.core.AgeCraftCore;
+import elcon.mods.agecraft.prehistory.PrehistoryProvider;
 import elcon.mods.agecraft.tech.TechTree;
 
 @Mod(modid = ACReference.MOD_ID, name = ACReference.NAME, version = ACReference.VERSION)
@@ -128,6 +130,10 @@ public class AgeCraft {
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.locked", "en_US", "Unkown Technology");
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.unlocked", "en_US", "Discovered Technology");
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.popup", "en_US", "Technology Discovered!");
+		
+		//register dimensions
+		DimensionManager.registerProviderType(10, PrehistoryProvider.class, false);
+		DimensionManager.registerDimension(10, 10);
 
 		proxy.registerRenderInformation();
 	}
