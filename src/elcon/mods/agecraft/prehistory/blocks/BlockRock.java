@@ -2,15 +2,16 @@ package elcon.mods.agecraft.prehistory.blocks;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import elcon.mods.agecraft.prehistory.PrehistoryAge;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import elcon.mods.agecraft.prehistory.PrehistoryAge;
 
 public class BlockRock extends Block {
 
@@ -34,12 +35,33 @@ public class BlockRock extends Block {
 	}
 	
 	@Override
+	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+		return super.canPlaceBlockAt(world, x, y, z) && canBlockStay(world, x, y, z);
+	}
+	
+	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		int i = world.getBlockId(x, y, z);
-		if(i != 0 && i != blockID && world.isBlockOpaqueCube(x, y, z)) {
+		int i = world.getBlockId(x, y - 1, z);
+		if(i != 0 && i != blockID && world.isBlockOpaqueCube(x, y - 1, z)) {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
+		if(!canBlockStay(world, x, y, z)) {
+			dropBlockAsItem_do(world, x, y, z, new ItemStack(PrehistoryAge.rock.itemID, 1, 0));
+            world.setBlockToAir(x, y, z);
+		}
+	}
+	
+	@Override
+	public void onBlockAdded(World world, int x, int y, int z) {
+		if(!canBlockStay(world, x, y, z)) {
+			dropBlockAsItem_do(world, x, y, z, new ItemStack(PrehistoryAge.rock.itemID, 1, 0));
+            world.setBlockToAir(x, y, z);
+		}
 	}
 	
 	@Override

@@ -24,7 +24,7 @@ public class ItemRock extends ItemBlock {
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if(!world.isRemote) {
 			if(player.isSneaking()) {
-				if(player.inventory.hasItemStack(new ItemStack(PrehistoryAge.rock.itemID, 2, 0))) {
+				if(hasTwoRocks(player.inventory)) {
 					player.openGui(AgeCraft.instance, 10, world, (int) player.posX, (int) player.posY, (int) player.posZ);
 					return stack;
 				}
@@ -49,5 +49,18 @@ public class ItemRock extends ItemBlock {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
 		icon = iconRegister.registerIcon("agecraft:ages/prehistory/rock");
+	}
+	
+	private boolean hasTwoRocks(InventoryPlayer inv) {
+		int count = 0;
+		for(int i = 0; i < inv.getSizeInventory(); i++) {
+			ItemStack stack = inv.getStackInSlot(i);
+			if(stack != null) {
+				if(stack.itemID == PrehistoryAge.rock.itemID) {
+					count += stack.stackSize;
+				}
+			}
+		}
+		return count >= 2;
 	}
 }

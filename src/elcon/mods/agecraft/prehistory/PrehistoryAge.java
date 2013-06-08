@@ -11,6 +11,8 @@ import elcon.mods.agecraft.prehistory.blocks.BlockCampfire;
 import elcon.mods.agecraft.prehistory.blocks.BlockRock;
 import elcon.mods.agecraft.prehistory.items.ItemFakeStone;
 import elcon.mods.agecraft.prehistory.items.ItemRock;
+import elcon.mods.agecraft.prehistory.items.ItemRockTanningTool;
+import elcon.mods.agecraft.prehistory.items.ItemRockTool;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 import elcon.mods.agecraft.prehistory.tileentities.renderers.TileEntityRendererCampfire;
 import elcon.mods.core.ElConCore;
@@ -25,6 +27,8 @@ public class PrehistoryAge extends Age {
 	
 	public static Item fakeStone;
 	public static Item rock;
+	public static Item rockTool;
+	public static Item rockTanningTool;
 	
 	public PrehistoryAge(int id) {
 		super(id, "prehistory", ACCreativeTabs.prehistoryAge);
@@ -43,8 +47,10 @@ public class PrehistoryAge extends Age {
 		GameRegistry.registerBlock(rockBlock, "AC_prehistory_rock");
 		
 		//init items
-		fakeStone = new ItemFakeStone(12000).setUnlocalizedName("fakeStone");
+		fakeStone = new ItemFakeStone(11000).setUnlocalizedName("fakeStone");
 		rock = new ItemRock(3002 - 256).setCreativeTab(tab).setUnlocalizedName("rock");
+		rockTool = new ItemRockTool(13000).setCreativeTab(tab).setUnlocalizedName("rockTool");
+		rockTanningTool = new ItemRockTanningTool(13001).setCreativeTab(tab).setUnlocalizedName("rockTanningTool");
 		
 		//add block names
 		LanguageRegistry.addName(campfireOff, "Campfire");
@@ -52,11 +58,17 @@ public class PrehistoryAge extends Age {
 		LanguageRegistry.addName(rockBlock, "Rock");
 		
 		//add item names
+		LanguageRegistry.addName(fakeStone, "Rock");
 		LanguageRegistry.addName(rock, "Rock");
+		LanguageRegistry.addName(rockTool, "Rock Tool");
+		LanguageRegistry.addName(rockTanningTool, "Rock Tanning Tool");
 	}
 	
 	@Override
 	public void postInit() {
+		SharpenerRecipes.addRecipes();
+		
+		//register tile entities
 		GameRegistry.registerTileEntity(TileEntityCampfire.class, "Campfire");
 	}
 	

@@ -143,5 +143,4 @@ public class InventorySharpener implements IInventory {
 	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
 		return false;
 	}
-
 }

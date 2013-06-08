@@ -1,6 +1,14 @@
 package elcon.mods.agecraft;
 
+import java.awt.List;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
@@ -13,10 +21,13 @@ import net.minecraft.world.World;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
+import elcon.mods.agecraft.tech.TechTreeClient;
+import elcon.mods.agecraft.tech.TechTreeServer;
 
 public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 	
@@ -28,9 +39,94 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		World world = Minecraft.getMinecraft().theWorld;
 		
 		switch(packetID) {
+		case 1:
+			handleTechTreeComponentPacket(dat);
+			break;
+		case 2:
+			handleAllTechTreeComponentsPacket(dat);
+			break;
 		case 100:
 			handleTileEntityCampfire(world, dat);
 			break;
+		}
+	}
+	
+	public void handleTechTreeComponentPacket(ByteArrayDataInput dat) {
+		short size = dat.readShort();
+		StringBuilder var3 = new StringBuilder();
+		for(int var4 = 0; var4 < size; var4++) {
+			var3.append(dat.readChar());
+		}
+		String key = var3.toString();
+		boolean unlock = dat.readBoolean();
+
+		if(unlock) {
+			TechTreeClient.unlockComponent(key);
+		} else {
+			TechTreeClient.lockComponent(key);
+		}
+	}
+
+	public static void sendTechTreeComponentPacket(String key, boolean unlock, EntityPlayerMP player) {
+		try {
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			DataOutputStream dos = new DataOutputStream(bos);
+			Packet250CustomPayload packet = new Packet250CustomPayload();
+			dos.writeByte(1);
+			dos.writeShort(key.length());
+			dos.writeChars(key);
+			dos.writeBoolean(unlock);
+			dos.close();
+			packet.channel = "ACTech";
+			packet.data = bos.toByteArray();
+			packet.length = bos.size();
+			packet.isChunkDataPacket = false;
+			player.playerNetServerHandler.sendPacketToPlayer(packet);
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void handleAllTechTreeComponentsPacket(ByteArrayDataInput dat) {
+		short size = dat.readShort();
+		ArrayList<String> ll = new ArrayList<String>();
+		for(int a = 0; a < size; a++) {
+			short ss = dat.readShort();
+			StringBuilder var3 = new StringBuilder();
+			for(int var4 = 0; var4 < ss; var4++) {
+				var3.append(dat.readChar());
+			}
+			ll.add(var3.toString());
+		}
+		for(String key : ll) {
+			TechTreeClient.unlockComponentStartup(key);
+		}
+	}
+
+	public static void sendAllTechTreeComponentsPacket(EntityPlayerMP player) {
+		try {
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			DataOutputStream dos = new DataOutputStream(bos);
+			Packet250CustomPayload packet = new Packet250CustomPayload();
+			dos.writeByte(2);
+			ArrayList<String> ll = TechTreeServer.unlockedTechComponents;
+			if((ll != null) && (ll.size() > 0)) {
+				dos.writeShort(ll.size());
+				for(String s : ll) {
+					if(s != null) {
+						dos.writeShort(s.length());
+						dos.writeChars(s);
+					}
+				}
+				dos.close();
+				packet.channel = "ACTech";
+				packet.data = bos.toByteArray();
+				packet.length = bos.size();
+				packet.isChunkDataPacket = false;
+				player.playerNetServerHandler.sendPacketToPlayer(packet);
+			}
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -54,6 +150,11 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 	@Override
 	//SERVER
 	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
+		try {
+			sendAllTechTreeComponentsPacket((EntityPlayerMP) netHandler.getPlayer());
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

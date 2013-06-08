@@ -1,7 +1,9 @@
 package elcon.mods.agecraft;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
 import elcon.mods.agecraft.prehistory.gui.ContainerSharpener;
 import elcon.mods.agecraft.prehistory.gui.InventorySharpener;
@@ -30,5 +32,9 @@ public class ACCommonProxy implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		return null;
+	}
+
+	public MinecraftServer getMCServer() {
+		return FMLCommonHandler.instance().getMinecraftServerInstance();
 	}
 }

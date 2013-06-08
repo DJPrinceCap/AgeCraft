@@ -2,6 +2,9 @@ package elcon.mods.agecraft;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import cpw.mods.fml.client.registry.KeyBindingRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 import elcon.mods.agecraft.prehistory.gui.GuiSharpener;
 import elcon.mods.agecraft.prehistory.gui.InventorySharpener;
 
@@ -9,6 +12,12 @@ public class ACClientProxy extends ACCommonProxy {
 
 	@Override
 	public void registerRenderInformation() {
+		//register client tick handler
+		TickRegistry.registerTickHandler(AgeCraft.instance.tickHandlerClient, Side.CLIENT);
+		
+		//register key handler
+		KeyBindingRegistry.registerKeyBinding(new ACKeyHandler());
+		
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].clientProxy();
