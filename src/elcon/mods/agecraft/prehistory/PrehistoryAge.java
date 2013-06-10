@@ -66,6 +66,8 @@ public class PrehistoryAge extends Age {
 	
 	@Override
 	public void postInit() {
+		//add recipes
+		Campfire.addRecipes();
 		SharpenerRecipes.addRecipes();
 		
 		//register tile entities

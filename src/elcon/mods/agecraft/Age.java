@@ -1,5 +1,6 @@
 package elcon.mods.agecraft;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import elcon.mods.agecraft.prehistory.PrehistoryAge;
 
@@ -52,6 +53,14 @@ public class Age {
 	}
 	
 	public void postInit() {
+		
+	}
+	
+	public void registerBlockIcons(IconRegister iconRegister) {
+		
+	}
+	
+	public void registerItemIcons(IconRegister iconRegister) {
 		
 	}
 }

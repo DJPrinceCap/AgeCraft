@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import elcon.mods.agecraft.AgeCraft;
 
 public class ItemFakeStone extends Item {
 	
@@ -24,5 +25,7 @@ public class ItemFakeStone extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
 		icon = iconRegister.registerIcon("agecraft:ages/prehistory/fake_stone");
+		
+		AgeCraft.instance.registerItemIcons(iconRegister);
 	}
 }

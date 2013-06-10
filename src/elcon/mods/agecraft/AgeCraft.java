@@ -3,6 +3,7 @@ package elcon.mods.agecraft;
 import java.io.File;
 import java.util.ArrayList;
 
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -44,7 +45,7 @@ public class AgeCraft {
 	public ACTickHandler tickHandler;
 	public ACTickHandlerClient tickHandlerClient;
 	public ACWorldGenerator worldGenerator;
-	
+
 	public static TechTree techTree;
 
 	@PreInit
@@ -99,8 +100,8 @@ public class AgeCraft {
 		// init tick handlers
 		tickHandler = new ACTickHandler();
 		tickHandlerClient = new ACTickHandlerClient();
-		
-		//register server tick handler
+
+		// register server tick handler
 		TickRegistry.registerTickHandler(AgeCraft.instance.tickHandler, Side.SERVER);
 
 		// register packet handler
@@ -126,12 +127,12 @@ public class AgeCraft {
 
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Prehistory", "en_US", "Prehistory");
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Agriculture", "en_US", "Agriculture");
-		
+
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.locked", "en_US", "Unkown Technology");
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.unlocked", "en_US", "Discovered Technology");
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.popup", "en_US", "Technology Discovered!");
 		
-		//register dimensions
+		// register dimensions
 		DimensionManager.registerProviderType(10, PrehistoryProvider.class, false);
 		DimensionManager.registerDimension(10, 10);
 
@@ -147,6 +148,28 @@ public class AgeCraft {
 		}
 		for(ACComponent component : components) {
 			component.postInit();
+		}
+	}
+
+	public void registerBlockIcons(IconRegister iconRegister) {
+		for(int i = 0; i < Age.ages.length; i++) {
+			if(Age.ages[i] != null) {
+				Age.ages[i].registerBlockIcons(iconRegister);
+			}
+		}
+		for(ACComponent component : components) {
+			component.registerBlockIcons(iconRegister);
+		}
+	}
+
+	public void registerItemIcons(IconRegister iconRegister) {
+		for(int i = 0; i < Age.ages.length; i++) {
+			if(Age.ages[i] != null) {
+				Age.ages[i].registerItemIcons(iconRegister);
+			}
+		}
+		for(ACComponent component : components) {
+			component.registerItemIcons(iconRegister);
 		}
 	}
 }

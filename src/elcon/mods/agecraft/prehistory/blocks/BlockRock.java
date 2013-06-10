@@ -21,7 +21,7 @@ public class BlockRock extends Block {
 		super(i, Material.rock);
 		setHardness(0.4F);
 		setStepSound(Block.soundStoneFootstep);
-		setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.2F, 0.75F);
+		setBlockBounds(0.35F, 0.0F, 0.35F, 0.75F, 0.2F, 0.75F);
 	}
 	
 	@Override
@@ -83,7 +83,7 @@ public class BlockRock extends Block {
 	
 	@Override
 	public int getRenderType() {
-		return 101;
+		return 201;
 	}
 	
 	@Override

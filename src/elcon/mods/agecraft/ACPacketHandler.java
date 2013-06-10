@@ -1,14 +1,13 @@
 package elcon.mods.agecraft;
 
-import java.awt.List;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
@@ -21,9 +20,9 @@ import net.minecraft.world.World;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 import elcon.mods.agecraft.tech.TechTreeClient;
@@ -51,7 +50,7 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		}
 	}
 	
-	public void handleTechTreeComponentPacket(ByteArrayDataInput dat) {
+	private void handleTechTreeComponentPacket(ByteArrayDataInput dat) {
 		short size = dat.readShort();
 		StringBuilder var3 = new StringBuilder();
 		for(int var4 = 0; var4 < size; var4++) {
@@ -87,7 +86,7 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		}
 	}
 
-	public void handleAllTechTreeComponentsPacket(ByteArrayDataInput dat) {
+	private void handleAllTechTreeComponentsPacket(ByteArrayDataInput dat) {
 		short size = dat.readShort();
 		ArrayList<String> ll = new ArrayList<String>();
 		for(int a = 0; a < size; a++) {
@@ -136,15 +135,26 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		int y = dat.readInt();
 		int z = dat.readInt();
 
-		TileEntityCampfire te = new TileEntityCampfire();
-		te.tick = dat.readInt();
-		te.timeLeft = dat.readInt();
-		te.fuel = dat.readInt();
-		te.hasFuel = dat.readBoolean();
-		te.isBurning = dat.readBoolean();
-		te.canBurn = dat.readBoolean();
+		TileEntityCampfire tile = new TileEntityCampfire();
+		tile.tick = dat.readInt();
+		tile.timeLeft = dat.readInt();
+		tile.fuel = dat.readInt();
+		tile.hasFuel = dat.readBoolean();
+		tile.isBurning = dat.readBoolean();
+		tile.canBurn = dat.readBoolean();
+		tile.logType = dat.readByte();
 		
-		world.setBlockTileEntity(x, y, z, te);
+		tile.hasSpit = dat.readBoolean();
+		tile.spitStage = dat.readByte();
+		tile.spitDirection = dat.readByte();
+		if(dat.readBoolean()) {
+			tile.spitStack = new ItemStack(dat.readInt(), 1, dat.readInt());
+		}
+		tile.spitRotation = dat.readInt();
+		tile.cookTime = dat.readInt();
+		tile.cooked = dat.readBoolean();
+		
+		world.setBlockTileEntity(x, y, z, tile);
 	}
 
 	@Override

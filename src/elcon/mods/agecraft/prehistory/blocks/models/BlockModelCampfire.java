@@ -15,6 +15,8 @@ public class BlockModelCampfire extends ModelBase {
 	public ModelRenderer log6;
 	public ModelRenderer log7;
 	public ModelRenderer log8;
+	
+	public ModelRenderer spit;
 
 	public BlockModelCampfire() {
 		byte byte0 = 16;
@@ -73,6 +75,7 @@ public class BlockModelCampfire extends ModelBase {
 		log6.render(f);
 		log7.render(f);
 		log8.render(f);
+
 		logCen.rotateAngleX = 0.0F;
 		logCen.rotateAngleY = 0.0F;
 		logCen.rotateAngleZ = 0.0F;

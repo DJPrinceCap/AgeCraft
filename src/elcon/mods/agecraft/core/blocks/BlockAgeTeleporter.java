@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import elcon.mods.agecraft.AgeCraft;
+import elcon.mods.agecraft.core.AgeTeleport;
 import elcon.mods.agecraft.core.TeleporterAC;
 
 public class BlockAgeTeleporter extends BlockAgeTeleporterBlock {
@@ -24,8 +26,7 @@ public class BlockAgeTeleporter extends BlockAgeTeleporterBlock {
 			EntityPlayerMP playerMP = (EntityPlayerMP) player;
 			if(playerMP != null) {
 				if(playerMP.dimension < 10) {
-					//TODO: add old source to AgeTeleport
-					//AgeTeleport.teleportList.put(player.username, AgeTeleport.create(world, par2 - 3, par3 - 3, par4 - 6));
+					AgeTeleport.teleportList.put(player.username, AgeTeleport.create(world, x - 3, y - 3, z - 6));
 					playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 10, new TeleporterAC(playerMP.mcServer.worldServerForDimension(10), 10, true));
 				} else {
 					playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterAC(playerMP.mcServer.worldServerForDimension(0), 0, true));
@@ -49,5 +50,7 @@ public class BlockAgeTeleporter extends BlockAgeTeleporterBlock {
 	public void registerIcons(IconRegister iconRegister) {
 		icon = iconRegister.registerIcon("agecraft:teleporter_block");
 		iconFront = iconRegister.registerIcon("agecraft:teleporter");
+		
+		AgeCraft.instance.registerBlockIcons(iconRegister);
 	}
 }

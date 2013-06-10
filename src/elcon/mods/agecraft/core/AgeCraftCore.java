@@ -7,7 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import elcon.mods.agecraft.ACComponent;
@@ -15,9 +17,13 @@ import elcon.mods.agecraft.ACCreativeTabs;
 import elcon.mods.agecraft.core.blocks.BlockAgeTeleporter;
 import elcon.mods.agecraft.core.blocks.BlockAgeTeleporterBeam;
 import elcon.mods.agecraft.core.blocks.BlockAgeTeleporterBlock;
+import elcon.mods.agecraft.core.blocks.BlockAgeTeleporterChest;
 import elcon.mods.agecraft.core.blocks.BlockStoneLayered;
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterBeam;
-import elcon.mods.agecraft.core.tileentities.renderers.TileEntityAgeTeleportBeamRenderer;
+import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterChest;
+import elcon.mods.agecraft.core.tileentities.renderers.TileEntityAgeTeleporterBeamRenderer;
+import elcon.mods.agecraft.core.tileentities.renderers.TileEntityAgeTeleporterChestRenderer;
+import elcon.mods.agecraft.prehistory.world.WorldGenTeleportSphere;
 
 public class AgeCraftCore extends ACComponent {
 	
@@ -44,19 +50,23 @@ public class AgeCraftCore extends ACComponent {
 		ageTeleporter = new BlockAgeTeleporter(2996).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporter");
 		ageTeleporterBlock = new BlockAgeTeleporterBlock(2997).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporterBlock");
 		ageTeleporterBeam = new BlockAgeTeleporterBeam(2998).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporterBeam");
+		ageTeleporterChest = new BlockAgeTeleporterChest(2999).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporterChest");
 		
 		//register blocks
 		GameRegistry.registerBlock(ageTeleporter, "AC_ageTeleporter");
 		GameRegistry.registerBlock(ageTeleporterBlock, "AC_ageTeleporterBlock");
 		GameRegistry.registerBlock(ageTeleporterBeam, "AC_ageTeleporterBeam");
+		GameRegistry.registerBlock(ageTeleporterChest, "AC_ageTeleporterChest");
 		
 		//add block names
 		LanguageRegistry.addName(ageTeleporter, "Age Teleporter");
 		LanguageRegistry.addName(ageTeleporterBlock, "Age Teleporter Block");
 		LanguageRegistry.addName(ageTeleporterBeam, "Age Teleporter Beam");
+		LanguageRegistry.addName(ageTeleporterChest, "Age Teleporter Chest");
 		
 		//register tile entities
 		GameRegistry.registerTileEntity(TileEntityAgeTeleporterBeam.class, "AgeTeleporterBeam");
+		GameRegistry.registerTileEntity(TileEntityAgeTeleporterChest.class, "AgeTeleporterChest");
 	}
 	
 	public void postInit() {
@@ -66,8 +76,17 @@ public class AgeCraftCore extends ACComponent {
 	}
 	
 	public void clientProxy() {
+		//register block rendering handler
+		ACBlockRenderingHandler blockRenderingHandler = new ACBlockRenderingHandler();
+		RenderingRegistry.registerBlockHandler(100, blockRenderingHandler);
+		
+		//register item rendering handler
+		ACItemRenderingHandler itemRenderingHandler = new ACItemRenderingHandler();
+		MinecraftForgeClient.registerItemRenderer(Trees.wood.blockID, itemRenderingHandler);
+		
 		//register tile entity renderers
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAgeTeleporterBeam.class, new TileEntityAgeTeleportBeamRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAgeTeleporterBeam.class, new TileEntityAgeTeleporterBeamRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAgeTeleporterChest.class, new TileEntityAgeTeleporterChestRenderer());
 	}
 	
 	public void serverProxy() {
@@ -75,6 +94,9 @@ public class AgeCraftCore extends ACComponent {
 	}
 	
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+		if(chunkX == 0 && chunkZ == 0) {
+			(new WorldGenTeleportSphere()).generate(world, random, 0, 128, 0);
+		} 		
 		chunkX *= 16;
 		chunkZ *= 16;
 		for(int i = 0; i < 16; i++) {

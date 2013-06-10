@@ -23,7 +23,7 @@ public class BlockOreStorage extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		icon = iconRegister.registerIcon("agecraft:ores/" + getUnlocalizedName2());
+		icon = iconRegister.registerIcon("agecraft:blocks/" + getUnlocalizedName2());
 	}
 
 	@Override

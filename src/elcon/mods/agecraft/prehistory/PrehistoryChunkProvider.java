@@ -14,6 +14,8 @@ import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.Ev
 import java.util.List;
 import java.util.Random;
 
+import elcon.mods.agecraft.prehistory.biomes.BiomeGenACPrehistory;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
@@ -415,7 +417,7 @@ public class PrehistoryChunkProvider implements IChunkProvider {
 		int l1;
 		int i2;
 
-		/*if(TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAKE) && !flag && rand.nextInt(4) == 0) {
+		if(TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, LAKE) && !flag && rand.nextInt(4) == 0) {
 			k1 = k + rand.nextInt(16) + 8;
 			l1 = rand.nextInt(128);
 			i2 = l + rand.nextInt(16) + 8;
@@ -432,7 +434,7 @@ public class PrehistoryChunkProvider implements IChunkProvider {
 			}
 		}
 
-		boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
+		/*boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, DUNGEON);
 		for(k1 = 0; doGen && k1 < 8; ++k1) {
 			l1 = k + rand.nextInt(16) + 8;
 			i2 = rand.nextInt(128);
@@ -442,11 +444,12 @@ public class PrehistoryChunkProvider implements IChunkProvider {
 				;
 			}
 		}*/
-
-		biomegenbase.decorate(worldObj, rand, k, l);
-		SpawnerAnimals.performWorldGenSpawning(worldObj, biomegenbase, k + 8, l + 8, 16, 16, rand);
-		k += 8;
-		l += 8;
+		if(biomegenbase instanceof BiomeGenACPrehistory) {
+			((BiomeGenACPrehistory) biomegenbase).decorateAC(worldObj, rand, k, l);
+			SpawnerAnimals.performWorldGenSpawning(worldObj, biomegenbase, k + 8, l + 8, 16, 16, rand);
+			k += 8;
+			l += 8;
+		}		
 
 		boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, rand, par2, par3, flag, ICE);
 		for(k1 = 0; doGen && k1 < 16; ++k1) {

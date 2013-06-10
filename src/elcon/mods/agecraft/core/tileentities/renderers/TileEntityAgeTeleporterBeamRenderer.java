@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterBeam;
 
-public class TileEntityAgeTeleportBeamRenderer extends TileEntitySpecialRenderer {
+public class TileEntityAgeTeleporterBeamRenderer extends TileEntitySpecialRenderer {
 	
 	public void renderTileEntityBeamAt(TileEntityAgeTeleporterBeam tile, double par2, double par4, double par6, float par8) {
 		float f1 = tile.func_82125_v_();
