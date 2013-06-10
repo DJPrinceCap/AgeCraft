@@ -12,6 +12,11 @@ public class ItemBlockMetadata extends ItemBlockWithMetadata {
 	}
 	
 	@Override
+	public String getItemDisplayName(ItemStack stack) {
+		return getLocalizedName(stack);
+	}
+	
+	@Override
 	public String getLocalizedName(ItemStack stack) {
 		return ((BlockMetadata) Block.blocksList[getBlockID()]).getLocalizedName(stack);
 	}

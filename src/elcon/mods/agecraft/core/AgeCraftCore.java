@@ -47,10 +47,10 @@ public class AgeCraftCore extends ACComponent {
 	
 	public void init() {
 		//init block
-		ageTeleporter = new BlockAgeTeleporter(2996).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporter");
-		ageTeleporterBlock = new BlockAgeTeleporterBlock(2997).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporterBlock");
-		ageTeleporterBeam = new BlockAgeTeleporterBeam(2998).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporterBeam");
-		ageTeleporterChest = new BlockAgeTeleporterChest(2999).setCreativeTab(ACCreativeTabs.ageCraft).setUnlocalizedName("ageTeleporterChest");
+		ageTeleporter = new BlockAgeTeleporter(2996).setUnlocalizedName("ageTeleporter");
+		ageTeleporterBlock = new BlockAgeTeleporterBlock(2997).setUnlocalizedName("ageTeleporterBlock");
+		ageTeleporterBeam = new BlockAgeTeleporterBeam(2998).setUnlocalizedName("ageTeleporterBeam");
+		ageTeleporterChest = new BlockAgeTeleporterChest(2999).setUnlocalizedName("ageTeleporterChest");
 		
 		//register blocks
 		GameRegistry.registerBlock(ageTeleporter, "AC_ageTeleporter");

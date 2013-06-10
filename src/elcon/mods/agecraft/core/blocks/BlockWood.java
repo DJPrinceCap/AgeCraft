@@ -31,7 +31,7 @@ public class BlockWood extends BlockMetadata {
 
 	@Override
 	public String getLocalizedName(ItemStack stack) {
-		return LanguageRegistry.instance().getStringLocalization("trees.wood." + TreeType.values()[(stack.getItemDamage() - (stack.getItemDamage() & 3)) / 4].name);
+		return LanguageRegistry.instance().getStringLocalization(getUnlocalizedName(stack));
 	}
 	
 	@Override

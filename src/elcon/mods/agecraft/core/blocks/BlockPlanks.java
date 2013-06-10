@@ -23,7 +23,7 @@ public class BlockPlanks extends BlockMetadata {
 	
 	@Override
 	public String getLocalizedName(ItemStack stack) {
-		return LanguageRegistry.instance().getStringLocalization("trees.planks." + TreeType.values()[stack.getItemDamage()].name);
+		return LanguageRegistry.instance().getStringLocalization(getUnlocalizedName(stack));
 	}
 	
 	@Override
