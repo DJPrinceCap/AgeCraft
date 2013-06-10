@@ -34,6 +34,11 @@ public class ACBlockRenderingHandler implements ISimpleBlockRenderingHandler {
 			renderer.uvRotateTop = 0;
 			renderer.uvRotateBottom = 0;
 			return flag;
+		} else if(modelID == 101) {
+			renderer.setRenderBounds(0.35D, 0.0D, 0.35D, 0.65D, 1.0D, 0.65D);
+			renderer.renderStandardBlock(block, x, y, z);
+		} else if(modelID == 102) {
+			
 		}
 		return false;
 	}

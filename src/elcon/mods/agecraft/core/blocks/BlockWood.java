@@ -2,21 +2,23 @@ package elcon.mods.agecraft.core.blocks;
 
 import java.util.List;
 
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import elcon.mods.agecraft.core.TreeType;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import elcon.mods.agecraft.core.TreeType;
 
 public class BlockWood extends BlockMetadata {
 
 	public BlockWood(int i) {
 		super(i, Material.wood);
+		setHardness(2.0F);
+		setStepSound(Block.soundWoodFootstep);
 	}
 
 	@Override
@@ -31,12 +33,12 @@ public class BlockWood extends BlockMetadata {
 
 	@Override
 	public String getLocalizedName(ItemStack stack) {
-		return LanguageRegistry.instance().getStringLocalization(getUnlocalizedName(stack));
+		return LanguageRegistry.instance().getStringLocalization(getUnlocalizedName(stack)) + " " + LanguageRegistry.instance().getStringLocalization("trees.wood");
 	}
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return "trees.wood." + TreeType.values()[(stack.getItemDamage() - (stack.getItemDamage() & 3)) / 4].name;
+		return "trees." + TreeType.values()[(stack.getItemDamage() - (stack.getItemDamage() & 3)) / 4].name;
 	}
 
 	@Override

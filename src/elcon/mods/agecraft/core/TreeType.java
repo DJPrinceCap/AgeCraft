@@ -12,14 +12,15 @@ public enum TreeType {
 	public int id;
 	public String name;
 	public String displayName;
+	
 	public Icon wood;
 	public Icon woodTop;
+	public Icon log;
+	public Icon planks;
 	public Icon leaves;
 	public Icon leavesFast;
 	public Icon smallSapling;
 	public Icon sapling;
-	public Icon planks;
-	public Icon log;
 	public Icon stick;	
 	
 	TreeType(int id, String name) {
