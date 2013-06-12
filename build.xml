@@ -18,7 +18,7 @@
 	
 	<target name="prep">
 		<copy todir="${build.dir.development}\mcp-playerapi\src\minecraft">
-			<fileset dir="${build.dir.development}\source\SkillCraft\src\" />
+			<fileset dir="${build.dir.development}\source\AgeCraft\src\" />
 		</copy>
 	</target>
 	
