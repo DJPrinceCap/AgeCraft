@@ -21,4 +21,21 @@ public class ACColors {
 	public static final String TEXT_COLOUR_PREFIX_LIGHT_PURPLE = "\u00a7d";
     public static final String TEXT_COLOUR_PREFIX_YELLOW = "\u00a7e";
     public static final String TEXT_COLOUR_PREFIX_WHITE = "\u00a7f";
+    
+    public static final int TEXT_COLOUR_BLACK = 0x000000;
+    public static final int TEXT_COLOUR_DARK_BLUE = 0x0000AA;
+    public static final int TEXT_COLOUR_DARK_GREEN = 0x00AA00;
+    public static final int TEXT_COLOUR_DARK_AQUA = 0x00AAAA;
+    public static final int TEXT_COLOUR_DARK_RED = 0xAA0000;
+    public static final int TEXT_COLOUR_PURPLE = 0xAA00AA;
+    public static final int TEXT_COLOUR_GOLD = 0xFFAA00;
+    public static final int TEXT_COLOUR_GRAY = 0xAAAAAA;
+    public static final int TEXT_COLOUR_DARK_GRAY = 0x555555;
+    public static final int TEXT_COLOUR_BLUE = 0x5555FF;
+    public static final int TEXT_COLOUR_GREEN = 0x55FF55;
+    public static final int TEXT_COLOUR_AQUA = 0x55FFFF;
+    public static final int TEXT_COLOUR_RED = 0xFF5555;
+    public static final int TEXT_COLOUR_LIGHT_PURPLE = 0xFF55FF;
+    public static final int TEXT_COLOUR_YELLOW = 0xFFFF55;
+    public static final int TEXT_COLOUR_WHITE = 0xFFFFFF;
 }

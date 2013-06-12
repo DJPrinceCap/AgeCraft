@@ -11,6 +11,7 @@ import elcon.mods.agecraft.core.blocks.BlockLeaves;
 import elcon.mods.agecraft.core.blocks.BlockLog;
 import elcon.mods.agecraft.core.blocks.BlockMetadata;
 import elcon.mods.agecraft.core.blocks.BlockPlanks;
+import elcon.mods.agecraft.core.blocks.BlockSapling;
 import elcon.mods.agecraft.core.blocks.BlockWood;
 import elcon.mods.agecraft.core.items.ItemBlockMetadata;
 import elcon.mods.agecraft.core.items.ItemLog;
@@ -35,28 +36,28 @@ public class Trees extends ACComponent {
 		log = new BlockLog(2601).setCreativeTab(ACCreativeTabs.wood).setUnlocalizedName("log");
 		planks = new BlockPlanks(2602).setCreativeTab(ACCreativeTabs.wood).setUnlocalizedName("planks");
 		leaves = new BlockLeaves(2603).setCreativeTab(ACCreativeTabs.wood).setUnlocalizedName("leaves");
-		//sapling = new BlockSapling(2604).setCreativeTab(ACCreativeTabs.wood).setUnlocalizedName("sapling");
+		sapling = new BlockSapling(2604).setCreativeTab(ACCreativeTabs.wood).setUnlocalizedName("sapling");
 		
 		//register blocks
 		GameRegistry.registerBlock(wood, "AC_trees_wood");
 		GameRegistry.registerBlock(log, "AC_trees_log");
 		GameRegistry.registerBlock(planks, "AC_trees_planks");
 		GameRegistry.registerBlock(leaves, "AC_trees_leaves");
-		//GameRegistry.registerBlock(sapling, "AC_trees_sapling");
+		GameRegistry.registerBlock(sapling, "AC_trees_sapling");
 		
 		//init items
 		(new ItemBlockMetadata((BlockMetadata) wood)).setUnlocalizedName("wood");
 		(new ItemLog((BlockMetadata) log)).setUnlocalizedName("log");
 		(new ItemBlockMetadata((BlockMetadata) planks)).setUnlocalizedName("planks");
 		(new ItemBlockMetadata((BlockMetadata) leaves)).setUnlocalizedName("leaves");
-		//(new ItemBlockMetadata((BlockMetadata) sapling)).setUnlocalizedName("sapling");
+		(new ItemBlockMetadata((BlockMetadata) sapling)).setUnlocalizedName("sapling");
 		
 		//add block names
 		LanguageRegistry.addName(wood, "Wood");
 		LanguageRegistry.addName(log, "Log");
 		LanguageRegistry.addName(planks, "Planks");
 		LanguageRegistry.addName(leaves, "Leaves");
-		//LanguageRegistry.addName(sapling, "Sapling");
+		LanguageRegistry.addName(sapling, "Sapling");
 	}
 	
 	public void postInit() {

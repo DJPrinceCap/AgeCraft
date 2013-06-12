@@ -24,6 +24,7 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import elcon.mods.agecraft.core.AgeCraftCore;
 import elcon.mods.agecraft.prehistory.PrehistoryProvider;
+import elcon.mods.agecraft.ranks.ACRankManager;
 import elcon.mods.agecraft.tech.TechTree;
 
 @Mod(modid = ACReference.MOD_ID, name = ACReference.NAME, version = ACReference.VERSION)
@@ -46,6 +47,8 @@ public class AgeCraft {
 	public ACTickHandlerClient tickHandlerClient;
 	public ACWorldGenerator worldGenerator;
 
+	public ACRankManager rankManager;
+	
 	public static TechTree techTree;
 
 	@PreInit
@@ -92,6 +95,10 @@ public class AgeCraft {
 		for(ACComponent component : components) {
 			component.init();
 		}
+		
+		//init rank manager
+		rankManager = new ACRankManager();
+		rankManager.init();
 
 		// init tech tree
 		techTree = new TechTree();
@@ -137,6 +144,7 @@ public class AgeCraft {
 		DimensionManager.registerDimension(10, 10);
 
 		proxy.registerRenderInformation();
+		proxy.registerPlayerAPI();
 	}
 
 	@PostInit

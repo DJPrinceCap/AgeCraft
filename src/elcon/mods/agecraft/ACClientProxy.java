@@ -2,11 +2,16 @@ package elcon.mods.agecraft;
 
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.src.ModelPlayerAPI;
+import net.minecraft.src.PlayerAPI;
+import net.minecraft.src.RenderPlayerAPI;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterChest;
+import elcon.mods.agecraft.player.ACModelPlayerBase;
+import elcon.mods.agecraft.player.ACPlayerBase;
 import elcon.mods.agecraft.prehistory.gui.GuiSharpener;
 import elcon.mods.agecraft.prehistory.gui.InventorySharpener;
 
@@ -28,6 +33,14 @@ public class ACClientProxy extends ACCommonProxy {
 		for(ACComponent component : AgeCraft.instance.components) {
 			component.clientProxy();
 		}
+	}
+	
+	@Override
+	public void registerPlayerAPI() {
+		super.registerPlayerAPI();
+		PlayerAPI.register("AgeCraft", ACPlayerBase.class);
+		RenderPlayerAPI.register("AgeCraft", ACRenderPlayerBase.class);
+		//ModelPlayerAPI.register("AgeCraft", ACModelPlayerBase.class);
 	}
 
 	@Override

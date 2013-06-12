@@ -24,6 +24,11 @@ public class ItemLog extends ItemBlockMetadata {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Icon getIconFromDamage(int meta) {
-		return TreeType.values()[meta].planks;
+		return TreeType.values()[meta].log;
+	}
+	
+	@Override
+	public Icon getIcon(ItemStack stack, int pass) {
+		return TreeType.values()[stack.getItemDamage()].log;
 	}
 }

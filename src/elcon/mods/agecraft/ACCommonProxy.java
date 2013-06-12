@@ -3,6 +3,7 @@ package elcon.mods.agecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.src.ServerPlayerAPI;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -21,6 +22,10 @@ public class ACCommonProxy implements IGuiHandler {
 		for(ACComponent component : AgeCraft.instance.components) {
 			component.serverProxy();
 		}
+	}
+	
+	public void registerPlayerAPI() {
+		ServerPlayerAPI.register("AgeCraft", ACServerPlayerBase.class);
 	}
 
 	@Override
