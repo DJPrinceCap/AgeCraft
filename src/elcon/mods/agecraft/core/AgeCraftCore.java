@@ -7,13 +7,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import elcon.mods.agecraft.ACComponent;
-import elcon.mods.agecraft.ACCreativeTabs;
 import elcon.mods.agecraft.core.blocks.BlockAgeTeleporter;
 import elcon.mods.agecraft.core.blocks.BlockAgeTeleporterBeam;
 import elcon.mods.agecraft.core.blocks.BlockAgeTeleporterBlock;
@@ -81,11 +79,15 @@ public class AgeCraftCore extends ACComponent {
 		RenderingRegistry.registerBlockHandler(100, blockRenderingHandler);
 		RenderingRegistry.registerBlockHandler(101, blockRenderingHandler);
 		RenderingRegistry.registerBlockHandler(102, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(103, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(104, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(105, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(106, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(107, blockRenderingHandler);
 		
 		//register item rendering handler
 		ACItemRenderingHandler itemRenderingHandler = new ACItemRenderingHandler();
-		MinecraftForgeClient.registerItemRenderer(Trees.wood.blockID, itemRenderingHandler);
-		
+				
 		//register tile entity renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAgeTeleporterBeam.class, new TileEntityAgeTeleporterBeamRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAgeTeleporterChest.class, new TileEntityAgeTeleporterChestRenderer());

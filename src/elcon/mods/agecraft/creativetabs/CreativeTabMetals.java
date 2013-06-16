@@ -1,6 +1,7 @@
 package elcon.mods.agecraft.creativetabs;
 
 import elcon.mods.agecraft.core.Metals;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,6 @@ public class CreativeTabMetals extends CreativeTabs {
 
 	@Override
 	public ItemStack getIconItemStack() {
-		return new ItemStack(Metals.oreCoal.blockID, 1, 0);
+		return new ItemStack(Block.oreCoal.blockID, 1, 0);
 	}
 }

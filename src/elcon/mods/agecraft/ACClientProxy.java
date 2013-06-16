@@ -2,18 +2,15 @@ package elcon.mods.agecraft;
 
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.src.ModelPlayerAPI;
-import net.minecraft.src.PlayerAPI;
-import net.minecraft.src.RenderPlayerAPI;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.registry.KeyBindingRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterChest;
-import elcon.mods.agecraft.player.ACModelPlayerBase;
-import elcon.mods.agecraft.player.ACPlayerBase;
 import elcon.mods.agecraft.prehistory.gui.GuiSharpener;
 import elcon.mods.agecraft.prehistory.gui.InventorySharpener;
+import elcon.mods.agecraft.render.BlockOverlayRenderingHandler;
 
 public class ACClientProxy extends ACCommonProxy {
 
@@ -25,6 +22,9 @@ public class ACClientProxy extends ACCommonProxy {
 		// register key handler
 		KeyBindingRegistry.registerKeyBinding(new ACKeyHandler());
 
+		//register block handlers
+		RenderingRegistry.registerBlockHandler(AgeCraft.BLOCK_OVERLAY_RENDER_ID, new BlockOverlayRenderingHandler());
+		
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
 				Age.ages[i].clientProxy();
@@ -38,8 +38,8 @@ public class ACClientProxy extends ACCommonProxy {
 	@Override
 	public void registerPlayerAPI() {
 		super.registerPlayerAPI();
-		PlayerAPI.register("AgeCraft", ACPlayerBase.class);
-		RenderPlayerAPI.register("AgeCraft", ACRenderPlayerBase.class);
+		//PlayerAPI.register("AgeCraft", ACPlayerBase.class);
+		//RenderPlayerAPI.register("AgeCraft", ACRenderPlayerBase.class);
 		//ModelPlayerAPI.register("AgeCraft", ACModelPlayerBase.class);
 	}
 

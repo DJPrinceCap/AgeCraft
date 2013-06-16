@@ -35,4 +35,8 @@ public class ACComponent {
 	public void registerItemIcons(IconRegister iconRegister) {
 
 	}
+	
+	public String firstCaps(String s) {
+		return Character.toString(s.charAt(0)).toUpperCase() + s.substring(1, s.length());
+	}
 }

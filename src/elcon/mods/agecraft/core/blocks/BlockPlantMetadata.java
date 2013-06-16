@@ -81,7 +81,7 @@ public class BlockPlantMetadata extends BlockMetadata implements IPlantable {
 
 	@Override
 	public int getRenderType() {
-		return 103;
+		return 102;
 	}
 
 	@Override
