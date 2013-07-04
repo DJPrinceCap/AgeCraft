@@ -29,7 +29,6 @@ public class TileEntityCampfire extends TileEntity {
 	public byte spitDirection = 0;
 	public ItemStack spitStack = null;
 	public ItemStack originalStack = null;
-	public int spitRotation = 0;
 	public int cookTime = 0;
 	public boolean cooked = false;
 	
@@ -62,7 +61,6 @@ public class TileEntityCampfire extends TileEntity {
 				dos.writeInt(spitStack.itemID);
 				dos.writeInt(spitStack.getItemDamage());
 			}
-			dos.writeInt(spitRotation);
 			dos.writeInt(cookTime);
 			dos.writeBoolean(cooked);
 		} catch(Exception e) {
@@ -136,48 +134,33 @@ public class TileEntityCampfire extends TileEntity {
 			}
 		}
 		if(hasSpit && spitStack != null) {
-			System.out.println(spitRotation + " " + cookTime + " " + FMLCommonHandler.instance().getEffectiveSide());
 			if(!isBurning) {
 				if(!worldObj.isRemote) {
-					System.out.println("dump");
 					EntityItem entity = new EntityItem(worldObj, xCoord, yCoord, zCoord, new ItemStack(spitStack.itemID, 1, spitStack.getItemDamage()));
 					float f3 = 0.05F;
 	                entity.motionX = (double)((float)worldObj.rand.nextGaussian() * f3);
 	                entity.motionY = (double)((float)worldObj.rand.nextGaussian() * f3 + 0.2F);
 	                entity.motionZ = (double)((float)worldObj.rand.nextGaussian() * f3);
 					spitStack = null;
-					spitRotation = 0;
 				}
 				spitStack = null;
-				spitRotation = 0;
 			} else {
-				if(cookTime <= 3000) {
+				if(cookTime <= 3600) {
 					cookTime++;
 				}
 				if(!cooked && cookTime >= 2000 && cookTime < 3000) {
 					if(!worldObj.isRemote) {
 						originalStack = spitStack;
-						System.out.println(spitStack + " " + Campfire.getRecipeOutput(spitStack));
 						spitStack = Campfire.getRecipeOutput(spitStack);
 						cooked = true;
-						worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
-					} else {
-						worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+						worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 					}
 				} else if(cookTime == 3000) {
 					if(!worldObj.isRemote) {
-						System.out.println(spitStack + " " + Campfire.getRecipeOutputBurned(originalStack));
 						spitStack = Campfire.getRecipeOutputBurned(originalStack);
-						worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
-					} else {
-						worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+						
+						worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 					}
-				}
-				
-				if(spitRotation == 360) {
-					spitRotation = 0;
-				} else {
-					spitRotation++;
 				}
 			}
 		}
@@ -199,7 +182,6 @@ public class TileEntityCampfire extends TileEntity {
 		if(nbt.hasKey("SpitStack")) {
 			spitStack = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("SpitStack"));
 		}
-		spitRotation = nbt.getInteger("SpitRotation");
 		cookTime = nbt.getInteger("CookTime");
 		cooked = nbt.getBoolean("Cooked");
 	}	
@@ -222,7 +204,6 @@ public class TileEntityCampfire extends TileEntity {
 			spitStack.writeToNBT(stack);
 			nbt.setTag("SpitStack", stack);
 		}
-		nbt.setInteger("SpitRotation", spitRotation);
 		nbt.setInteger("CookTime", cookTime);
 		nbt.setBoolean("Cooked", cooked);
 	}

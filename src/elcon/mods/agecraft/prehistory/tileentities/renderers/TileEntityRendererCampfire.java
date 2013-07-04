@@ -51,20 +51,20 @@ public class TileEntityRendererCampfire extends TileEntitySpecialRenderer {
 			GL11.glPushMatrix();
 			GL11.glDisable(GL11.GL_LIGHTING);
 			float light = tile.worldObj.getLightBrightness(tile.xCoord, tile.yCoord, tile.zCoord);
-			doRenderItem(campfire.spitStack, campfire.spitRotation, campfire.spitDirection, x + 0.5D, y + 0.85D, z + 0.485D, light);
+			doRenderItem(campfire.spitStack, campfire.cookTime % 360, campfire.spitDirection, x + 0.5D, y + 0.85D, z + 0.485D, light);
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glPopMatrix();
 		}
 	}
 
-	public void doRenderItem(ItemStack stack, int rotation, byte direction, double d, double d1, double d2, float f1) {
+	public void doRenderItem(ItemStack stack, double rotation, byte direction, double d, double d1, double d2, float f1) {
 		if(stack == null) {
 			return;
 		}
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) d, (float) d1, (float) d2);
 		
-		GL11.glRotatef(rotation, direction == 0 ? 1.0F : 0.0F, 0.0F, direction == 1 ? 1.0F : 0.0F);
+		GL11.glRotatef((float) rotation, direction == 0 ? 1.0F : 0.0F, 0.0F, direction == 1 ? 1.0F : 0.0F);
 		GL11.glRotatef(90 + (direction * 90), 0.0F, 1.0F, 0.0F);
 
 		float ff = 0.97500002437500060937501523437538F;

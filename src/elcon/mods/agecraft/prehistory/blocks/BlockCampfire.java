@@ -90,7 +90,7 @@ public class BlockCampfire extends BlockContainer {
 			} else if(Campfire.hasRecipe(player.inventory.getCurrentItem())) {
 				if(tile.isBurning && tile.spitStage >= 3 && tile.spitStack == null) {
 					tile.spitStack = new ItemStack(player.inventory.getCurrentItem().itemID, 1, player.inventory.getCurrentItem().getItemDamage());
-					tile.spitRotation = 0;
+					//tile.spitRotation = 0;
 					tile.cookTime = 0;
 					tile.cooked = false;
 					tile.originalStack = tile.spitStack;
@@ -101,7 +101,7 @@ public class BlockCampfire extends BlockContainer {
 			} else if(tile.spitStack != null) {
 				player.inventory.addItemStackToInventory(tile.spitStack);
 				tile.spitStack = null;
-				tile.spitRotation = 0;
+				//tile.spitRotation = 0;
 				tile.cookTime = 0;
 				tile.cooked = false;
 				tile.originalStack = null;
@@ -111,7 +111,7 @@ public class BlockCampfire extends BlockContainer {
 		} else if(tile.spitStack != null) {
 			player.inventory.addItemStackToInventory(tile.spitStack);
 			tile.spitStack = null;
-			tile.spitRotation = 0;
+			//tile.spitRotation = 0;
 			tile.cookTime = 0;
 			tile.cooked = false;
 			tile.originalStack = null;

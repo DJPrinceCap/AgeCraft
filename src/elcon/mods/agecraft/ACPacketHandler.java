@@ -208,9 +208,9 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		if(dat.readBoolean()) {
 			tile.spitStack = new ItemStack(dat.readInt(), 1, dat.readInt());
 		}
-		tile.spitRotation = dat.readInt();
 		tile.cookTime = dat.readInt();
 		tile.cooked = dat.readBoolean();
+		world.markBlockForUpdate(x, y, z);
 	}
 
 	@Override
