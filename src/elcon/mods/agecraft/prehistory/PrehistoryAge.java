@@ -79,8 +79,8 @@ public class PrehistoryAge extends Age {
 		blockRenderingHandler = new PrehistoryBlockRenderingHandler();
 		
 		//register block rendering handler
-		RenderingRegistry.registerBlockHandler(100, blockRenderingHandler);
-		RenderingRegistry.registerBlockHandler(101, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(200, blockRenderingHandler);
+		RenderingRegistry.registerBlockHandler(201, blockRenderingHandler);
 		
 		//register tile entity renderers
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCampfire.class, new TileEntityRendererCampfire());

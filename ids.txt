@@ -21,7 +21,42 @@
 
 ======= Block IDs ======
 2500-2999 	Core blocks
+	2500 Ore
+	2501 Block
+	2502 Fence
+	2503 Fence gate
+	2504 Door
+	2505 Trapdoor
+	2506 Ladders
+	
+	2510 Wood
+	2511 Log
+	2512 Planks
+	2513 Leaves
+	2514 Sapling
+	2515 Wood wall
+	2516 Stairs
+	2517 Slab
+	2518 Fence
+	2519 Fence gate
+	2520 Door
+	2521 Trapdoor
+	2522 Ladders
+	2523 Design planks
+	
+	2530 Wood DNA
+	2531 Log DNA
+	2532 Leaves DNA
+	2533 Sapling DNA
+	
+	2996 Age Teleporter
+	2997 Age Teleporter Block
+	2998 Age Teleporter Beam
+	2999 Age Teleporter Chest
 3000-3099	Prehistory
+	3000 Campfire off
+	3001 Campfire on
+	3002 Rock
 3100-3199	Agriculture Age
 3200-3299	Ancient Egypt
 3300-3399	Ancient China
@@ -36,6 +71,8 @@
 ======= Item IDs ======
 12500-12999 	Core items
 13000-13099		Prehistory
+	13000 Rock Tool
+	13001 Rock Tanning Tool
 13100-13199		Agriculture Age
 13200-13299		Ancient Egypt
 13300-13399		Ancient China
@@ -49,12 +86,19 @@
 
 ======= Packet IDs ======
 0-74	Server to client packets
-75-99	Client to server packets
-100+ 	TileEntity packets
+	1 TechTree Component
+	2 TechTree All Components
+75-90	Client to server packets
+90+ 	TileEntity packets
+	90 NBT
+	91 DNA
+	100 Campfire
 
 ======= Block Render IDs ======
 100-199 	Core blocks
 200-299		Prehistory
+	200 Campfire
+	201 Rock
 300-399		Agriculture Age
 400-499		Ancient Egypt
 500-599		Ancient China

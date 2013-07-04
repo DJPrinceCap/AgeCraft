@@ -2,7 +2,7 @@ package elcon.mods.agecraft.core.world;
 
 import java.util.Random;
 
-import elcon.mods.agecraft.util.Coordinates;
+import elcon.mods.agecraft.util.BlockPosition;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -67,7 +67,7 @@ public abstract class WorldGenBase extends WorldGenerator {
 		for(int i = 0; i < radius; i++) {
 			for(int j = 0; j < height; j++) {
 				for(int k = 0; k < radius; k++) {
-					if(Coordinates.distance(new Coordinates(x + i, y + j, z + k), new Coordinates(x, y, z)) <= radius + 0.01D) {
+					if(BlockPosition.distance(new BlockPosition(x + i, y + j, z + k), new BlockPosition(x, y, z)) <= radius + 0.01D) {
 						int oldID = world.getBlockId(x + i, y + j, z + k);
 						if(oldID == 0 || (oldID != 0 && replace)) {
 							setBlockAndMetadata(world, x + i, y + j, z + k, blockID, meta);
@@ -85,7 +85,7 @@ public abstract class WorldGenBase extends WorldGenerator {
 		for(int i = 0; i < height; i++) {
 			for(int j = 0; j < radius; j++) {
 				for(int k = 0; k < radius; k++) {
-					if(Coordinates.distance(new Coordinates(x + i, y + j, z + k), new Coordinates(x, y, z)) <= radius + 0.01D) {
+					if(BlockPosition.distance(new BlockPosition(x + i, y + j, z + k), new BlockPosition(x, y, z)) <= radius + 0.01D) {
 						int oldID = world.getBlockId(x + i, y + j, z + k);
 						if(oldID == 0 || (oldID != 0 && replace)) {
 							setBlockAndMetadata(world, x + i, y + j, z + k, blockID, meta);
@@ -103,7 +103,7 @@ public abstract class WorldGenBase extends WorldGenerator {
 		for(int i = 0; i < radius; i++) {
 			for(int j = 0; j < radius; j++) {
 				for(int k = 0; k < height; k++) {
-					if(Coordinates.distance(new Coordinates(x + i, y + j, z + k), new Coordinates(x, y, z)) <= radius + 0.01D) {
+					if(BlockPosition.distance(new BlockPosition(x + i, y + j, z + k), new BlockPosition(x, y, z)) <= radius + 0.01D) {
 						int oldID = world.getBlockId(x + i, y + j, z + k);
 						if(oldID == 0 || (oldID != 0 && replace)) {
 							setBlockAndMetadata(world, x + i, y + j, z + k, blockID, meta);
@@ -142,9 +142,9 @@ public abstract class WorldGenBase extends WorldGenerator {
 		for(int i = 0; i < radiusX; i++) {
 			for(int j = 0; j < radiusY; j++) {
 				for(int k = 0; k < radiusZ; k++) {
-					if(Coordinates.distance(new Coordinates(x + i, y + j, z + k), new Coordinates(x, y, z)) <= radiusX + 0.01D 
-							&& Coordinates.distance(new Coordinates(x + i, y + j, z + k), new Coordinates(x, y, z)) <= radiusY + 0.01D 
-							&& Coordinates.distance(new Coordinates(x + i, y + j, z + k), new Coordinates(x, y, z)) <= radiusZ + 0.01D) {
+					if(BlockPosition.distance(new BlockPosition(x + i, y + j, z + k), new BlockPosition(x, y, z)) <= radiusX + 0.01D 
+							&& BlockPosition.distance(new BlockPosition(x + i, y + j, z + k), new BlockPosition(x, y, z)) <= radiusY + 0.01D 
+							&& BlockPosition.distance(new BlockPosition(x + i, y + j, z + k), new BlockPosition(x, y, z)) <= radiusZ + 0.01D) {
 						int oldID = world.getBlockId(x + i, y + j, z + k);
 						if(oldID == 0 || (oldID != 0 && replace)) {
 							setBlockAndMetadata(world, x + i, y + j, z + k, blockID, meta);
@@ -162,7 +162,7 @@ public abstract class WorldGenBase extends WorldGenerator {
 		for(int i = 0; i < radius; i++) {
 			for(int j = 0; j < radius; j++) {
 				for(int k = 0; k < radius; k++) {
-					if(Coordinates.distance(new Coordinates(x + i, y + j, z + k), new Coordinates(x, y, z)) <= radius + 0.01D) {
+					if(BlockPosition.distance(new BlockPosition(x + i, y + j, z + k), new BlockPosition(x, y, z)) <= radius + 0.01D) {
 						int oldID = world.getBlockId(x + i, y + j, z + k);
 						if(oldID == 0 || (oldID != 0 && replace)) {
 							setBlockAndMetadata(world, x + i, y + j, z + k, blockID, meta);

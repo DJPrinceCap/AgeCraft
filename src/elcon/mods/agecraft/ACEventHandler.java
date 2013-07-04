@@ -14,7 +14,7 @@ public class ACEventHandler implements ICraftingHandler {
 
 	@ForgeSubscribe
 	public void worldLoad(WorldEvent.Load event) {
-		if (event.world.isRemote) {
+		if(event.world.isRemote) {
 			return;
 		}
 		ACSaveHandler sm = new ACSaveHandler(event.world.getSaveHandler(), event.world);
@@ -23,7 +23,7 @@ public class ACEventHandler implements ICraftingHandler {
 
 	@ForgeSubscribe
 	public void worldSave(WorldEvent.Save event) {
-		if (event.world.isRemote) {
+		if(event.world.isRemote) {
 			return;
 		}
 		ACSaveHandler sm = new ACSaveHandler(event.world.getSaveHandler(), event.world);

@@ -5,10 +5,10 @@
 	<property file="build_number.properties" prefix="build_number"/>
 	
 	<target name="clean">
-		<delete file="${build.dir.development}\mcp-playerapi\src\minecraft\META-INF" />
-		<delete file="${build.dir.development}\mcp-playerapi\src\minecraft\mcmod.info" />
-		<delete dir="${build.dir.development}\mcp-playerapi\src\minecraft\elcon\mods" />
-		<delete dir="${build.dir.development}\mcp-playerapi\reobf\minecraft" />
+		<delete file="${build.dir.development}\mcp\src\minecraft\META-INF" />
+		<delete file="${build.dir.development}\mcp\src\minecraft\mcmod.info" />
+		<delete dir="${build.dir.development}\mcp\src\minecraft\elcon\mods" />
+		<delete dir="${build.dir.development}\mcp\reobf\minecraft" />
 	</target>
 	
 	<target name="increment_build_number">
@@ -18,31 +18,31 @@
 	</target>
 	
 	<target name="prep">
-		<copy todir="${build.dir.development}\mcp-playerapi\src\minecraft">
+		<copy todir="${build.dir.development}\mcp\src\minecraft">
 			<fileset dir="${build.dir.development}\source\AgeCraft\src\" />
 		</copy>
 	</target>
 	
 	<target name="replace_tokens">
-		<replace dir="${build.dir.development}\mcp-playerapi\src\minecraft" token="@VERSION@" value="${build.release.mod.version}" />
-		<replace dir="${build.dir.development}\mcp-playerapi\src\minecraft" token="@FINGERPRINT@" value="${build.release.mod.fingerprint}" />
-		<replace dir="${build.dir.development}\mcp-playerapi\src\minecraft" token="@BUILD_NUMBER@" value="${build_number.build_number}" />
+		<replace dir="${build.dir.development}\mcp\src\minecraft" token="@VERSION@" value="${build.release.mod.version}" />
+		<replace dir="${build.dir.development}\mcp\src\minecraft" token="@FINGERPRINT@" value="${build.release.mod.fingerprint}" />
+		<replace dir="${build.dir.development}\mcp\src\minecraft" token="@BUILD_NUMBER@" value="${build_number.build_number}" />
 	</target>
 	
 	<target name="recompile">
-		<exec dir="${build.dir.development}\mcp-playerapi" executable="cmd" osfamily="windows">
+		<exec dir="${build.dir.development}\mcp" executable="cmd" osfamily="windows">
 			<arg line="/c recompile.bat" />
 		</exec>
-		<exec dir="${build.dir.development}\mcp-playerapi" executable="bash" osfamily="unix">
+		<exec dir="${build.dir.development}\mcp" executable="bash" osfamily="unix">
 			<arg line="recompile.sh" />
 		</exec>
 	</target>
 	
 	<target name="reobfuscate">
-		<exec dir="${build.dir.development}\mcp-playerapi" executable="cmd" osfamily="windows">
+		<exec dir="${build.dir.development}\mcp" executable="cmd" osfamily="windows">
 			<arg line="/c reobfuscate_srg.bat" />
 		</exec>
-		<exec dir="${build.dir.development}\mcp-playerapi" executable="bash" osfamily="unix">
+		<exec dir="${build.dir.development}\mcp" executable="bash" osfamily="unix">
 			<arg line="reobfuscate_srg.sh" />
 		</exec>
 	</target>
@@ -63,8 +63,8 @@
 		<!-- Build the jar -->
 		<mkdir dir="${build.dir.release}\${build.release.minecraft.version}\${build.release.mod.version}" />
 		<jar destfile="${build.dir.release}\${build.release.minecraft.version}\${build.release.mod.version}\${build.release.mod.name}-${build.release.mod.version}-${build_number.build_number}.jar">
-			<fileset dir="${build.dir.development}\mcp-playerapi\src\minecraft\" includes="mcmod.info" />
-			<fileset dir="${build.dir.development}\mcp-playerapi\reobf\minecraft" />
+			<fileset dir="${build.dir.development}\mcp\src\minecraft\" includes="mcmod.info" />
+			<fileset dir="${build.dir.development}\mcp\reobf\minecraft" />
 			<fileset dir="${build.dir.development}\source\AgeCraft\resources" excludes="**/xcf/**" />
 		</jar>
 		
@@ -84,8 +84,8 @@
 		<!-- Build the jar -->
 		<mkdir dir="${build.dir.release}\${build.release.minecraft.version}\${build.release.mod.version}" />
 		<jar destfile="${build.dir.release}\${build.release.minecraft.version}\${build.release.mod.version}\${build.release.mod.name}-${build.release.mod.version}-${build_number.build_number}.jar">
-			<fileset dir="${build.dir.development}\mcp-playerapi\src\minecraft\" includes="mcmod.info" />
-			<fileset dir="${build.dir.development}\mcp-playerapi\reobf\minecraft" />
+			<fileset dir="${build.dir.development}\mcp\src\minecraft\" includes="mcmod.info" />
+			<fileset dir="${build.dir.development}\mcp\reobf\minecraft" />
 			<fileset dir="${build.dir.development}\source\AgeCraft\resources" excludes="**/xcf/**" />
 		</jar>
 		

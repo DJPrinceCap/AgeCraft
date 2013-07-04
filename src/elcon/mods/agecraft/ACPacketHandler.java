@@ -5,9 +5,11 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.NetLoginHandler;
@@ -22,21 +24,22 @@ import com.google.common.io.ByteStreams;
 
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import elcon.mods.agecraft.core.tileentities.TileEntityDNA;
+import elcon.mods.agecraft.core.tileentities.TileEntityNBT;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 import elcon.mods.agecraft.tech.TechTreeClient;
 import elcon.mods.agecraft.tech.TechTreeServer;
 
 public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
-	
+
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
 		ByteArrayDataInput dat = ByteStreams.newDataInput(packet.data);
 		byte packetID = dat.readByte();
-		
+
 		World world = Minecraft.getMinecraft().theWorld;
-		
+
 		switch(packetID) {
 		case 1:
 			handleTechTreeComponentPacket(dat);
@@ -44,12 +47,18 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		case 2:
 			handleAllTechTreeComponentsPacket(dat);
 			break;
+		case 90:
+			handleTileEntityNBT(world, dat);
+			break;
+		case 91:
+			handleTileEntityDNA(world, dat);
+			break;
 		case 100:
 			handleTileEntityCampfire(world, dat);
 			break;
 		}
 	}
-	
+
 	private void handleTechTreeComponentPacket(ByteArrayDataInput dat) {
 		short size = dat.readShort();
 		StringBuilder var3 = new StringBuilder();
@@ -129,13 +138,62 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		}
 	}
 
+	private void handleTileEntityNBT(World world, ByteArrayDataInput dat) {
+		int x = dat.readInt();
+		int y = dat.readInt();
+		int z = dat.readInt();
+		TileEntityNBT tile = (TileEntityNBT) world.getBlockTileEntity(x, y, z);
+		if(tile == null) {
+			tile = (TileEntityNBT) Block.blocksList[world.getBlockId(x, y, z)].createTileEntity(world, world.getBlockMetadata(x, y, z));
+			world.setBlockTileEntity(x, y, z, tile);
+		}
+		NBTTagCompound nbt = new NBTTagCompound();
+		try {
+			NBTBase nbtbase;
+			while((nbtbase = NBTBase.readNamedTag(dat)).getId() != 0) {
+				nbt.setTag(nbtbase.getName(), nbtbase);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		tile.nbt = nbt;
+		world.markBlockForUpdate(x, y, z);
+	}
+	
+	private void handleTileEntityDNA(World world, ByteArrayDataInput dat) {
+		int x = dat.readInt();
+		int y = dat.readInt();
+		int z = dat.readInt();
+		TileEntityDNA tile = (TileEntityDNA) world.getBlockTileEntity(x, y, z);
+		if(tile == null) {
+			tile = (TileEntityDNA) Block.blocksList[world.getBlockId(x, y, z)].createTileEntity(world, world.getBlockMetadata(x, y, z));
+			world.setBlockTileEntity(x, y, z, tile);
+		}
+		NBTTagCompound nbt = new NBTTagCompound();
+		try {
+			NBTBase nbtbase;
+			while((nbtbase = NBTBase.readNamedTag(dat)).getId() != 0) {
+				nbt.setTag(nbtbase.getName(), nbtbase);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		tile.nbt = nbt;
+		tile.getDNA().readFromNBT(tile.nbt);
+		world.markBlockForUpdate(x, y, z);
+	}
+
 	private void handleTileEntityCampfire(World world, ByteArrayDataInput dat) {
 		NBTTagCompound nbt = new NBTTagCompound();
 		int x = dat.readInt();
 		int y = dat.readInt();
 		int z = dat.readInt();
 
-		TileEntityCampfire tile = new TileEntityCampfire();
+		TileEntityCampfire tile = (TileEntityCampfire) world.getBlockTileEntity(x, y, z);
+		if(tile == null) {
+			tile = new TileEntityCampfire();
+			world.setBlockTileEntity(x, y, z, tile);
+		}
 		tile.tick = dat.readInt();
 		tile.timeLeft = dat.readInt();
 		tile.fuel = dat.readInt();
@@ -143,7 +201,7 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		tile.isBurning = dat.readBoolean();
 		tile.canBurn = dat.readBoolean();
 		tile.logType = dat.readByte();
-		
+
 		tile.hasSpit = dat.readBoolean();
 		tile.spitStage = dat.readByte();
 		tile.spitDirection = dat.readByte();
@@ -153,12 +211,10 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		tile.spitRotation = dat.readInt();
 		tile.cookTime = dat.readInt();
 		tile.cooked = dat.readBoolean();
-		
-		world.setBlockTileEntity(x, y, z, tile);
 	}
 
 	@Override
-	//SERVER
+	// SERVER
 	public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
 		try {
 			sendAllTechTreeComponentsPacket((EntityPlayerMP) netHandler.getPlayer());
@@ -168,28 +224,28 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 	}
 
 	@Override
-	//SERVER
+	// SERVER
 	public String connectionReceived(NetLoginHandler netHandler, INetworkManager manager) {
 		return null;
 	}
 
 	@Override
-	//CLIENT
+	// CLIENT
 	public void connectionOpened(NetHandler netClientHandler, String server, int port, INetworkManager manager) {
 	}
 
 	@Override
-	//CLIENT
+	// CLIENT
 	public void connectionOpened(NetHandler netClientHandler, MinecraftServer server, INetworkManager manager) {
 	}
 
 	@Override
-	//BOTH
+	// BOTH
 	public void connectionClosed(INetworkManager manager) {
 	}
 
 	@Override
-	//CLIENT
+	// CLIENT
 	public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {
 	}
 }

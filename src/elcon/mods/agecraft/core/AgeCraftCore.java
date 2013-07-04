@@ -19,6 +19,8 @@ import elcon.mods.agecraft.core.blocks.BlockAgeTeleporterChest;
 import elcon.mods.agecraft.core.blocks.BlockStoneLayered;
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterBeam;
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterChest;
+import elcon.mods.agecraft.core.tileentities.TileEntityDNA;
+import elcon.mods.agecraft.core.tileentities.TileEntityNBT;
 import elcon.mods.agecraft.core.tileentities.renderers.TileEntityAgeTeleporterBeamRenderer;
 import elcon.mods.agecraft.core.tileentities.renderers.TileEntityAgeTeleporterChestRenderer;
 import elcon.mods.agecraft.prehistory.world.WorldGenTeleportSphere;
@@ -65,6 +67,8 @@ public class AgeCraftCore extends ACComponent {
 		//register tile entities
 		GameRegistry.registerTileEntity(TileEntityAgeTeleporterBeam.class, "AgeTeleporterBeam");
 		GameRegistry.registerTileEntity(TileEntityAgeTeleporterChest.class, "AgeTeleporterChest");
+		GameRegistry.registerTileEntity(TileEntityNBT.class, "TileNBT");
+		GameRegistry.registerTileEntity(TileEntityDNA.class, "TileDNA");
 	}
 	
 	public void postInit() {
