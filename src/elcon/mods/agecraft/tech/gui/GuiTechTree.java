@@ -196,7 +196,7 @@ public class GuiTechTree extends GuiScreen {
 	protected void drawTitle() {
 		int var1 = (width - achievementsPaneWidth) / 2;
 		int var2 = (height - achievementsPaneHeight) / 2;
-		galFontRenderer.drawString("Technology Tree", var1 + 15, var2 + 5, 4210752);
+		galFontRenderer.drawString(LanguageRegistry.instance().getStringLocalization("agecraft.techtree.name"), var1 + 15, var2 + 5, 4210752);
 	}
 
 	protected void genBackground(int par1, int par2, float par3) {
@@ -372,7 +372,7 @@ public class GuiTechTree extends GuiScreen {
 					}
 				}
 
-				mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "/gui/tech_tree.png"));
+				mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "textures/gui/tech_tree.png"));
 				int var42 = k1 + var26;
 				int var41 = l1 + var27;
 
@@ -397,7 +397,7 @@ public class GuiTechTree extends GuiScreen {
 					var37.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.renderEngine, var35.itemStack, var42 + 3, var41 + 3);
 					GL11.glDisable(GL11.GL_LIGHTING);
 				} else {
-					mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "/gui/tech_tree_icons.png"));
+					mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "textures/gui/tech_tree_icons.png"));
 					drawTexturedModalRect(var42 + 3, var41 + 3, var35.iconIndex % 16 * 16, var35.iconIndex / 16 * 16, 16, 16);
 				}
 
@@ -416,7 +416,7 @@ public class GuiTechTree extends GuiScreen {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "/gui/tech_tree.png"));
+		mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "textures/gui/tech_tree.png"));
 		drawTexturedModalRect(i1, j1, 0, 0, achievementsPaneWidth, achievementsPaneHeight);
 		GL11.glPopMatrix();
 		zLevel = 0.0F;

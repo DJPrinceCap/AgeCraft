@@ -61,14 +61,6 @@ public class AgeCraft {
 		config.load();
 		ACConfig.load(config);
 
-		LanguageRegistry.instance().addStringLocalization("agecraft.version.init_log_message", "en_US", "Initializing remote version check against remote version authority, located at");
-		LanguageRegistry.instance().addStringLocalization("agecraft.version.uninitialized", "en_US", "Remote version check failed to initialize properly");
-		LanguageRegistry.instance().addStringLocalization("agecraft.version.current", "en_US", "Currently using the most up to date version (@REMOTE_MOD_VERSION@) of AgeCraft for @MINECRAFT_VERSION@");
-		LanguageRegistry.instance().addStringLocalization("agecraft.version.outdated", "en_US", "A new @MOD_NAME@ version exists (@REMOTE_MOD_VERSION@) for @MINECRAFT_VERSION@. Get it here: @MOD_UPDATE_LOCATION@");
-		LanguageRegistry.instance().addStringLocalization("agecraft.version.general_error", "en_US", "Error while connecting to remote version authority file; trying again");
-		LanguageRegistry.instance().addStringLocalization("agecraft.version.final_error", "en_US", "Version check stopping after three unsuccessful connection attempts");
-		LanguageRegistry.instance().addStringLocalization("agecraft.version.mc_version_not_found", "en_US", "Unable to find a version of @MOD_NAME@ for @MINECRAFT_VERSION@ in the remote version authority");
-
 		ACVersion.execute();
 
 		config.save();
@@ -126,18 +118,6 @@ public class AgeCraft {
 		// add world generator
 		worldGenerator = new ACWorldGenerator();
 		GameRegistry.registerWorldGenerator(worldGenerator);
-
-		// add localizations
-		LanguageRegistry.instance().addStringLocalization("itemGroup.AgeCraft", "en_US", "AgeCraft");
-		LanguageRegistry.instance().addStringLocalization("itemGroup.Metals", "en_US", "Metals");
-		LanguageRegistry.instance().addStringLocalization("itemGroup.Wood", "en_US", "Wood");
-
-		//LanguageRegistry.instance().addStringLocalization("itemGroup.Prehistory", "en_US", "Prehistory");
-		//LanguageRegistry.instance().addStringLocalization("itemGroup.Agriculture", "en_US", "Agriculture");
-
-		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.locked", "en_US", "Unkown Technology");
-		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.unlocked", "en_US", "Discovered Technology");
-		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.popup", "en_US", "Technology Discovered!");
 		
 		// register dimensions
 		DimensionManager.registerProviderType(10, PrehistoryProvider.class, false);

@@ -26,8 +26,7 @@ public class TileEntityAgeTeleporterChestRenderer extends TileEntitySpecialRende
 			var9 = tileEntityChest.getBlockMetadata();
 		}
 
-		func_110628_a(new ResourceLocation("agecraft", "/misc/beam.png"));
-		//bindTextureByName("/mods/agecraft/textures/tile/teleporter_chest.png");
+		func_110628_a(new ResourceLocation("agecraft", "textures/misc/beam.png"));
 		ModelChest var14 = chestModel;
 
 		GL11.glPushMatrix();

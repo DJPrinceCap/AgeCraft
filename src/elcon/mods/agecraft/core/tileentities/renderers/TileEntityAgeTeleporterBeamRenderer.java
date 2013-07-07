@@ -17,7 +17,7 @@ public class TileEntityAgeTeleporterBeamRenderer extends TileEntitySpecialRender
 
 		if(f1 > 0.0F) {
 			Tessellator tessellator = Tessellator.instance;
-			func_110628_a(new ResourceLocation("agecraft", "/misc/beam.png"));
+			func_110628_a(new ResourceLocation("agecraft", "textures/misc/beam.png"));
 			GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
 			GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
 			GL11.glDisable(GL11.GL_LIGHTING);

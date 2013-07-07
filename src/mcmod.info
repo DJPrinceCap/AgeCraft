@@ -10,7 +10,7 @@
     "ElConquistador"
   ],
   "credits": "AgeCraft Team",
-  "logoFile": "/mods/agecraft/textures/logo/logo.png",
+  "logoFile": "/assets/agecraft/textures/logo/logo.png",
   "screenshots": [
   ],
   "parent":"",
