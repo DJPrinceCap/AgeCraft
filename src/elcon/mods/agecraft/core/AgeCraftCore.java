@@ -42,10 +42,6 @@ public class AgeCraftCore extends ACComponent {
 	}
 	
 	public void preInit() {
-		
-	}
-	
-	public void init() {
 		//init block
 		ageTeleporter = new BlockAgeTeleporter(2996).setUnlocalizedName("ageTeleporter");
 		ageTeleporterBlock = new BlockAgeTeleporterBlock(2997).setUnlocalizedName("ageTeleporterBlock");
@@ -71,9 +67,13 @@ public class AgeCraftCore extends ACComponent {
 		GameRegistry.registerTileEntity(TileEntityDNA.class, "TileDNA");
 	}
 	
+	public void init() {
+		
+	}
+	
 	public void postInit() {
 		Block.blocksList[1] = null;
-		Block.stone = new BlockStoneLayered(1).setUnlocalizedName("stone");
+		Block.stone = new BlockStoneLayered(1).setUnlocalizedName("stone").func_111022_d("stone");
 		Item.itemsList[1] = new ItemBlockWithMetadata(1 - 256, Block.stone).setUnlocalizedName("stone");
 	}
 	

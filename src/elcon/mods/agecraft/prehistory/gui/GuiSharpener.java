@@ -2,6 +2,7 @@ package elcon.mods.agecraft.prehistory.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -15,7 +16,8 @@ public class GuiSharpener extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture("/mods/agecraft/textures/gui/sharpener.png");
+		mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "/gui/sharpener.png"));
+		//mc.renderEngine.bindTexture("/mods/agecraft/textures/gui/sharpener.png");
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 }

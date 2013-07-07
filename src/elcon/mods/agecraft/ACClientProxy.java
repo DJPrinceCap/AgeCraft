@@ -38,9 +38,6 @@ public class ACClientProxy extends ACCommonProxy {
 	@Override
 	public void registerPlayerAPI() {
 		super.registerPlayerAPI();
-		//PlayerAPI.register("AgeCraft", ACPlayerBase.class);
-		//RenderPlayerAPI.register("AgeCraft", ACRenderPlayerBase.class);
-		//ModelPlayerAPI.register("AgeCraft", ACModelPlayerBase.class);
 	}
 
 	@Override

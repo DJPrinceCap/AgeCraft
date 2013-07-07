@@ -7,6 +7,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -159,6 +160,6 @@ public class BlockAgeTeleporterChest extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		blockIcon = iconRegister.registerIcon("wood");
+		blockIcon = Block.chest.getIcon(0, 0);
 	}
 }

@@ -3,6 +3,7 @@ package elcon.mods.agecraft.core.tileentities.renderers;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
@@ -25,7 +26,8 @@ public class TileEntityAgeTeleporterChestRenderer extends TileEntitySpecialRende
 			var9 = tileEntityChest.getBlockMetadata();
 		}
 
-		bindTextureByName("/mods/agecraft/textures/tile/teleporter_chest.png");
+		func_110628_a(new ResourceLocation("agecraft", "/misc/beam.png"));
+		//bindTextureByName("/mods/agecraft/textures/tile/teleporter_chest.png");
 		ModelChest var14 = chestModel;
 
 		GL11.glPushMatrix();

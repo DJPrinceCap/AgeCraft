@@ -35,7 +35,7 @@ public class PrehistoryAge extends Age {
 	}
 	
 	@Override
-	public void init() {
+	public void preInit() {
 		//init blocks
 		campfireOff = new BlockCampfire(3000, false).setCreativeTab(tab).setUnlocalizedName("campfireOff");
 		campfireOn = new BlockCampfire(3001, true).setUnlocalizedName("campfireOn");
@@ -62,6 +62,14 @@ public class PrehistoryAge extends Age {
 		LanguageRegistry.addName(rock, "Rock");
 		LanguageRegistry.addName(rockTool, "Rock Tool");
 		LanguageRegistry.addName(rockTanningTool, "Rock Tanning Tool");
+		
+		//register tile entities
+		GameRegistry.registerTileEntity(TileEntityCampfire.class, "Campfire");
+	}
+	
+	@Override
+	public void init() {
+		
 	}
 	
 	@Override
@@ -69,9 +77,6 @@ public class PrehistoryAge extends Age {
 		//add recipes
 		Campfire.addRecipes();
 		SharpenerRecipes.addRecipes();
-		
-		//register tile entities
-		GameRegistry.registerTileEntity(TileEntityCampfire.class, "Campfire");
 	}
 	
 	@Override

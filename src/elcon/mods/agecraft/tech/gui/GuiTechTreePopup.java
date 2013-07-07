@@ -5,6 +5,7 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -14,6 +15,8 @@ import elcon.mods.agecraft.tech.TechTreeComponent;
 
 public class GuiTechTreePopup extends Gui {
 
+	private static final ResourceLocation achievementBackground = new ResourceLocation("textures/gui/achievement/achievement_background.png");
+	
 	private Minecraft theGame;
 
 	private int achievementWindowWidth;
@@ -100,7 +103,7 @@ public class GuiTechTreePopup extends Gui {
 				var3 *= var3;
 				int var5 = achievementWindowWidth - 160;
 				int var6 = 0 - (int) (var3 * 36.0D);
-				int var7 = theGame.renderEngine.getTexture("/achievement/bg.png");
+				int var7 = theGame.renderEngine.func_110581_b(achievementBackground).func_110552_b();
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
 				GL11.glBindTexture(GL11.GL_TEXTURE_2D, var7);
@@ -130,9 +133,8 @@ public class GuiTechTreePopup extends Gui {
 					GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 					GL11.glEnable(GL11.GL_COLOR_MATERIAL);
 					GL11.glEnable(GL11.GL_LIGHTING);
-
-					var7 = theGame.renderEngine.getTexture("/elcon/mods/agecraft/textures/gui/tech_tree_icons.png");
-					GL11.glBindTexture(3553, var7);
+					var7 = theGame.renderEngine.func_110581_b(new ResourceLocation("agecraft", "/gui/tech_tree_icons.png")).func_110552_b();
+					GL11.glBindTexture(GL11.GL_TEXTURE_2D, var7);
 					drawTexturedModalRect(var5 + 8, var6 + 8, theComponent.iconIndex % 16 * 16, theComponent.iconIndex / 16 * 16, 16, 16);
 					GL11.glDisable(GL11.GL_LIGHTING);
 					GL11.glDepthMask(true);

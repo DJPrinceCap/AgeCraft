@@ -48,7 +48,7 @@ public class BlockAgeTeleporterBeam extends BlockContainer {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		icon = iconRegister.registerIcon("agecraft:teleporter_beam_block");
-		iconTop = iconRegister.registerIcon("agecraft:teleporter_beam");
+		icon = iconRegister.registerIcon("agecraft:ageTeleporterBeamBlock");
+		iconTop = iconRegister.registerIcon("agecraft:ageTeleporterBeam");
 	}
 }

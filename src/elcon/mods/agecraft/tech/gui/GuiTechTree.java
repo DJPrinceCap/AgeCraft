@@ -16,6 +16,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiSmallButton;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
@@ -230,7 +231,6 @@ public class GuiTechTree extends GuiScreen {
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
-		this.mc.renderEngine.bindTexture("/terrain.png");
 		int i2 = k + 288 >> 4;
 		int j2 = l + 288 >> 4;
 		int k2 = (k + 288) % 16;
@@ -277,9 +277,6 @@ public class GuiTechTree extends GuiScreen {
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthFunc(GL11.GL_LEQUAL);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		/*
-		 * int var22; int var24; int var25; int var26;
-		 */
 		int var24;
 		int var25;
 		int var26;
@@ -375,7 +372,7 @@ public class GuiTechTree extends GuiScreen {
 					}
 				}
 
-				mc.renderEngine.bindTexture("/mods/agecraft/textures/gui/tech_tree.png");
+				mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "/gui/tech_tree.png"));
 				int var42 = k1 + var26;
 				int var41 = l1 + var27;
 
@@ -400,7 +397,7 @@ public class GuiTechTree extends GuiScreen {
 					var37.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.renderEngine, var35.itemStack, var42 + 3, var41 + 3);
 					GL11.glDisable(GL11.GL_LIGHTING);
 				} else {
-					mc.renderEngine.bindTexture("/mods/agecraft/textures/gui/tech_tree_icons.png");
+					mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "/gui/tech_tree_icons.png"));
 					drawTexturedModalRect(var42 + 3, var41 + 3, var35.iconIndex % 16 * 16, var35.iconIndex / 16 * 16, 16, 16);
 				}
 
@@ -419,7 +416,7 @@ public class GuiTechTree extends GuiScreen {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.bindTexture("/mods/agecraft/textures/gui/tech_tree.png");
+		mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "/gui/tech_tree.png"));
 		drawTexturedModalRect(i1, j1, 0, 0, achievementsPaneWidth, achievementsPaneHeight);
 		GL11.glPopMatrix();
 		zLevel = 0.0F;

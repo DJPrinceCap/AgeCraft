@@ -2,23 +2,16 @@ package elcon.mods.agecraft.asm;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Enumeration;
 import java.util.Map;
-import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.logging.Level;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.IFMLCallHook;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
-import cpw.mods.fml.relauncher.RelaunchClassLoader;
 
 public class ACCoreLoadingPlugin implements IFMLLoadingPlugin, IFMLCallHook {
 
-	public static RelaunchClassLoader cl;
 	public static File minecraftDir;
 
 	@Override
@@ -45,7 +38,6 @@ public class ACCoreLoadingPlugin implements IFMLLoadingPlugin, IFMLCallHook {
 
 	@Override
 	public void injectData(Map<String, Object> data) {
-		cl = (RelaunchClassLoader) data.get("classLoader");
 		if(data.containsKey("mcLocation"))
 			minecraftDir = (File) data.get("mcLocation");
 	}

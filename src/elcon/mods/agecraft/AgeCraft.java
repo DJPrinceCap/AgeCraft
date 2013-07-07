@@ -8,10 +8,8 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -53,7 +51,7 @@ public class AgeCraft {
 	
 	public static TechTree techTree;
 
-	@PreInit
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		minecraftDir = new File(event.getSuggestedConfigurationFile().getPath().replace("config\\AgeCraft.cfg", ""));
 
@@ -87,7 +85,7 @@ public class AgeCraft {
 		}
 	}
 
-	@Init
+	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
@@ -134,8 +132,8 @@ public class AgeCraft {
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Metals", "en_US", "Metals");
 		LanguageRegistry.instance().addStringLocalization("itemGroup.Wood", "en_US", "Wood");
 
-		LanguageRegistry.instance().addStringLocalization("itemGroup.Prehistory", "en_US", "Prehistory");
-		LanguageRegistry.instance().addStringLocalization("itemGroup.Agriculture", "en_US", "Agriculture");
+		//LanguageRegistry.instance().addStringLocalization("itemGroup.Prehistory", "en_US", "Prehistory");
+		//LanguageRegistry.instance().addStringLocalization("itemGroup.Agriculture", "en_US", "Agriculture");
 
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.locked", "en_US", "Unkown Technology");
 		LanguageRegistry.instance().addStringLocalization("agecraft.techtree.unlocked", "en_US", "Discovered Technology");
@@ -149,7 +147,7 @@ public class AgeCraft {
 		proxy.registerPlayerAPI();
 	}
 
-	@PostInit
+	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		for(int i = 0; i < Age.ages.length; i++) {
 			if(Age.ages[i] != null) {
@@ -159,7 +157,7 @@ public class AgeCraft {
 		for(ACComponent component : components) {
 			component.postInit();
 		}
-		
+
 		try {
 			DimensionManager.spawnSettings.put(0, false);
 			DimensionManager.spawnSettings.put(1, false);

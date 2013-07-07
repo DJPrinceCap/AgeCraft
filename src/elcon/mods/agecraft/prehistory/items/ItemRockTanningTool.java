@@ -17,6 +17,7 @@ public class ItemRockTanningTool extends Item {
 		super(i);
 		setMaxDamage(32);
 		setMaxStackSize(1);
+		setDamage(new ItemStack(this), 1);
 	}
 	
 	@Override
@@ -29,11 +30,6 @@ public class ItemRockTanningTool extends Item {
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
 		icon = iconRegister.registerIcon("agecraft:ages/prehistory/rock_tanning_tool");
-	}
-	
-	@Override
-	public int getDamageVsEntity(Entity entity) {
-		return 1;
 	}
 	
 	@Override

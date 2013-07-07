@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStone;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.IBlockAccess;
@@ -22,6 +23,7 @@ public class BlockStoneLayered extends BlockStone {
 		setHardness(1.5F);
 		setResistance(10.0F);
 		setStepSound(Block.soundStoneFootstep);
+		blockIcon = Block.stone.getIcon(0, 0);
 	}
 	
 	@Override
@@ -38,10 +40,14 @@ public class BlockStoneLayered extends BlockStone {
 	}
 	
 	public void updateHeight(World world, int x, int y, int z, Random random) {
-		int i;
-		for(i = 0; y > ((i * LAYER_SIZE) + (-2 + random.nextInt(5))); i++) {
+		if(y < 8) {
+			world.setBlockMetadataWithNotify(x, y, z, 1, 0);
+		} else {
+			int i;
+			for(i = 0; y > ((i * LAYER_SIZE) + (-2 + random.nextInt(5))); i++) {
+			}
+			world.setBlockMetadataWithNotify(x, y, z, i, 0);
 		}
-		world.setBlockMetadataWithNotify(x, y, z, i, 0);
 	}
 
 	@Override

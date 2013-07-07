@@ -1,15 +1,15 @@
 package elcon.mods.agecraft.core.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.logging.Level;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockAgeTeleporterBlock extends Block {
-
-	private Icon icon;
 	
 	public BlockAgeTeleporterBlock(int i) {
 		super(i, Material.iron);
@@ -19,13 +19,7 @@ public class BlockAgeTeleporterBlock extends Block {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta) {
-		return icon;
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		icon = iconRegister.registerIcon("agecraft:teleporter_block");
+		blockIcon = iconRegister.registerIcon("agecraft:ageTeleporterBlock");
 	}
 }

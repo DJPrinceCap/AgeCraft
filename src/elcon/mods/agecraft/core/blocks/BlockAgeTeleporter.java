@@ -48,8 +48,8 @@ public class BlockAgeTeleporter extends BlockAgeTeleporterBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister) {
-		icon = iconRegister.registerIcon("agecraft:teleporter_block");
-		iconFront = iconRegister.registerIcon("agecraft:teleporter");
+		icon = iconRegister.registerIcon("agecraft:ageTeleporterBlock");
+		iconFront = iconRegister.registerIcon("agecraft:ageTeleporter");
 		
 		AgeCraft.instance.registerBlockIcons(iconRegister);
 	}

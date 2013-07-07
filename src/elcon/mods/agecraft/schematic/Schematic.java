@@ -52,11 +52,11 @@ public class Schematic {
 	}
 
 	public Schematic(String mod, String name, String dirName, String path, boolean useMCDir) {
-		this(mod, name, new File(useMCDir ? Minecraft.getMinecraftDir() + dirName : dirName), path, useMCDir);
+		this(mod, name, new File(useMCDir ? Minecraft.getMinecraft().mcDataDir + dirName : dirName), path, useMCDir);
 	}
 
 	public Schematic(String mod, String name) {
-		this(mod, name, new File(Minecraft.getMinecraftDir() + "/mods/" + mod + "/schematics/"), name, true);
+		this(mod, name, new File(Minecraft.getMinecraft().mcDataDir + "/mods/" + mod + "/schematics/"), name, true);
 	}
 	
 	public void createFromWorld(World world, int x, int y, int z) {

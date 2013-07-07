@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,7 @@ public class ItemRockTool extends Item {
 		super(i);
 		setMaxDamage(32);
 		setMaxStackSize(1);
+		setDamage(new ItemStack(this), 1);
 	}
 	
 	@Override
@@ -66,11 +68,6 @@ public class ItemRockTool extends Item {
 	}
 	
 	@Override
-	public int getDamageVsEntity(Entity entity) {
-		return 1;
-	}
-	
-	@Override
 	public boolean canHarvestBlock(Block block) {
 		for(int i = 0; i < blocksEffectiveAgainst.length; i++) {
 			if(blocksEffectiveAgainst[i] == block) {
@@ -89,23 +86,23 @@ public class ItemRockTool extends Item {
 		}
 		return 0.1F;
 	}
-	
+
 	@Override
-	public boolean hitEntity(ItemStack itemstack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+	public boolean hitEntity(ItemStack itemstack, EntityLivingBase entity1, EntityLivingBase entity2) {
 		if(itemstack.hasTagCompound() && itemstack.stackTagCompound.getInteger("Type") == 1) {
-			itemstack.damageItem(1, par3EntityLiving);
+			itemstack.damageItem(1, entity2);
 		}
-		itemstack.damageItem(2, par3EntityLiving);
+		itemstack.damageItem(2, entity2);
 		return true;
 	}
 
 	@Override
-	public boolean onBlockDestroyed(ItemStack itemstack, World world, int id, int x, int y, int z, EntityLiving entityliving) {
+	public boolean onBlockDestroyed(ItemStack itemstack, World world, int id, int x, int y, int z, EntityLivingBase entiy) {
 		if(itemstack.hasTagCompound() && itemstack.stackTagCompound.getInteger("Type") == 1) {
-			itemstack.damageItem(2, entityliving);
+			itemstack.damageItem(2, entiy);
 		} else {
 			if((double) Block.blocksList[id].getBlockHardness(world, x, y, z) != 0.0D) {
-				itemstack.damageItem(1, entityliving);
+				itemstack.damageItem(1, entiy);
 			}
 		}
 		return true;
