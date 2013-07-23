@@ -26,6 +26,7 @@ import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 import elcon.mods.agecraft.core.tileentities.TileEntityDNA;
+import elcon.mods.agecraft.core.tileentities.TileEntityMetadata;
 import elcon.mods.agecraft.core.tileentities.TileEntityNBT;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 import elcon.mods.agecraft.tech.TechTreeClient;
@@ -36,7 +37,7 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
 		ByteArrayDataInput dat = ByteStreams.newDataInput(packet.data);
-		byte packetID = dat.readByte();
+		int packetID = dat.readInt();
 
 		World world = Minecraft.getMinecraft().theWorld;
 
@@ -53,7 +54,10 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		case 91:
 			handleTileEntityDNA(world, dat);
 			break;
-		case 100:
+		case 92:
+			handleTileEntityMetadata(world, dat);
+			break;
+		case 200:
 			handleTileEntityCampfire(world, dat);
 			break;
 		}
@@ -80,7 +84,7 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			DataOutputStream dos = new DataOutputStream(bos);
 			Packet250CustomPayload packet = new Packet250CustomPayload();
-			dos.writeByte(1);
+			dos.writeInt(1);
 			dos.writeShort(key.length());
 			dos.writeChars(key);
 			dos.writeBoolean(unlock);
@@ -116,7 +120,7 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			DataOutputStream dos = new DataOutputStream(bos);
 			Packet250CustomPayload packet = new Packet250CustomPayload();
-			dos.writeByte(2);
+			dos.writeInt(2);
 			ArrayList<String> ll = TechTreeServer.unlockedTechComponents;
 			if((ll != null) && (ll.size() > 0)) {
 				dos.writeShort(ll.size());
@@ -180,6 +184,19 @@ public class ACPacketHandler implements IPacketHandler, IConnectionHandler {
 		}
 		tile.nbt = nbt;
 		tile.getDNA().readFromNBT(tile.nbt);
+		world.markBlockForUpdate(x, y, z);
+	}
+	
+	private void handleTileEntityMetadata(World world, ByteArrayDataInput dat) {
+		int x = dat.readInt();
+		int y = dat.readInt();
+		int z = dat.readInt();
+		TileEntityMetadata tile = (TileEntityMetadata) world.getBlockTileEntity(x, y, z);
+		if(tile == null) {
+			tile = new TileEntityMetadata();
+			world.setBlockTileEntity(x, y, z, tile);
+		}
+		tile.metadata = dat.readInt();
 		world.markBlockForUpdate(x, y, z);
 	}
 

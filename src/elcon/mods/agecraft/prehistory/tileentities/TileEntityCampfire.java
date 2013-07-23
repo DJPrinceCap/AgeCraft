@@ -39,7 +39,7 @@ public class TileEntityCampfire extends TileEntity {
 		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
-			dos.writeByte(100);
+			dos.writeInt(200);
 			dos.writeInt(xCoord);
 			dos.writeInt(yCoord);
 			dos.writeInt(zCoord);
@@ -66,12 +66,12 @@ public class TileEntityCampfire extends TileEntity {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		Packet250CustomPayload pkt = new Packet250CustomPayload();
-		pkt.channel = "ACTile";
-		pkt.data = bos.toByteArray();
-		pkt.length = bos.size();
-		pkt.isChunkDataPacket = true;
-		return pkt;
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "ACTile";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		packet.isChunkDataPacket = true;
+		return packet;
 	}
 	
 	@Override

@@ -3,10 +3,10 @@ package elcon.mods.agecraft.prehistory.tileentities.renderers;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.resources.ResourceLocation;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -31,7 +31,6 @@ public class TileEntityRendererCampfire extends TileEntitySpecialRenderer {
 		GL11.glTranslated(x, y, z);
 		GL11.glTranslatef(0.5F, -0.5F, 0.5F);
 		func_110628_a(new ResourceLocation("agecraft", "/tile/campfire.png"));
-		//bindTextureByName("/mods/agecraft/textures/tile/campfire.png");
 		GL11.glPushMatrix();
 		model.renderModel(0.0625F);
 		GL11.glPopMatrix();

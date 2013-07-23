@@ -92,7 +92,9 @@
 90+ 	TileEntity packets
 	90 NBT
 	91 DNA
-	100 Campfire
+	92 Metadata
+	100 Ore
+	200 Campfire
 
 ======= Block Render IDs ======
 100-199 	Core blocks

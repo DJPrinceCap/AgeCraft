@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlockWithMetadata;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.client.GuiIngameForge;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -20,6 +21,7 @@ import elcon.mods.agecraft.core.blocks.BlockStoneLayered;
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterBeam;
 import elcon.mods.agecraft.core.tileentities.TileEntityAgeTeleporterChest;
 import elcon.mods.agecraft.core.tileentities.TileEntityDNA;
+import elcon.mods.agecraft.core.tileentities.TileEntityMetadata;
 import elcon.mods.agecraft.core.tileentities.TileEntityNBT;
 import elcon.mods.agecraft.core.tileentities.renderers.TileEntityAgeTeleporterBeamRenderer;
 import elcon.mods.agecraft.core.tileentities.renderers.TileEntityAgeTeleporterChestRenderer;
@@ -65,10 +67,13 @@ public class AgeCraftCore extends ACComponent {
 		GameRegistry.registerTileEntity(TileEntityAgeTeleporterChest.class, "AgeTeleporterChest");
 		GameRegistry.registerTileEntity(TileEntityNBT.class, "TileNBT");
 		GameRegistry.registerTileEntity(TileEntityDNA.class, "TileDNA");
+		GameRegistry.registerTileEntity(TileEntityMetadata.class, "TileMetadata");
 	}
 	
 	public void init() {
-		
+		//TODO: change in-game gui and inventory
+		//GuiIngameForge.renderExperiance = false;
+		//GuiIngameForge.renderJumpBar = false;
 	}
 	
 	public void postInit() {

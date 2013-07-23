@@ -87,7 +87,7 @@ public class ACSaveHandler {
 		for (String key : loaded) {
 			TechTreeServer.unlockedTechComponents.add(key);
 		}
-		FMLCommonHandler.instance().getFMLLogger().log(Level.INFO, "[AgeCraft] Loaded the Tech Tree");
+		ACLog.info("Loaded the Tech Tree");
 
 		in.close();
 		gzis.close();

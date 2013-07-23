@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.logging.Level;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import elcon.mods.agecraft.ACLog;
 import elcon.mods.agecraft.dna.storage.DNAStorage;
 import elcon.mods.agecraft.dna.storage.DNAStorageChromosome;
 import elcon.mods.agecraft.dna.storage.DNAStorageGene;
@@ -25,7 +26,7 @@ public class DNA {
 	
 	public static void registerDNAObject(int id, DNAObject dnaObject) {
 		if(dnaObjects.containsKey(id)) {		
-			FMLCommonHandler.instance().getFMLLogger().log(Level.WARNING, "[AgeCraft][DNA] " + dnaObject.name + " is trying to override existing DNA object: " + dnaObjects.get(id));
+			ACLog.warning("[DNA] " + dnaObject.name + " is trying to override existing DNA object: " + dnaObjects.get(id));
 		}
 		dnaObjects.put(id, dnaObject);
 	}

@@ -3,6 +3,7 @@ package elcon.mods.agecraft.structure;
 import java.util.logging.Level;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import elcon.mods.agecraft.ACLog;
 import elcon.mods.agecraft.util.Vect;
 
 public class StructurePattern {
@@ -36,7 +37,7 @@ public class StructurePattern {
 			fullpattern = fullpattern + pattern;
 		}
 		if(fullpattern.length() != getWidth() * getHeight() * getDepth()) {
-			FMLCommonHandler.instance().getFMLLogger().log(Level.INFO, "[MultiBlock] Incorrect pattern " + fullpattern + " (" + fullpattern.length() + ") for (" + getWidth() + "/" + getHeight() + "/" + getDepth() + ")");
+			ACLog.info("[MultiBlock] Incorrect pattern " + fullpattern + " (" + fullpattern.length() + ") for (" + getWidth() + "/" + getHeight() + "/" + getDepth() + ")");
 		}
 
 		for(int i = 0; i < getWidth(); i++) {

@@ -205,7 +205,7 @@ public class TileEntityAgeTeleporterChest extends TileEntity implements IInvento
 	}
 
 	@Override
-	public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
 }

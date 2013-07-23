@@ -69,10 +69,10 @@ public class ContainerSharpener extends Container {
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
 	}
-
+	
 	@Override
-	public void onCraftGuiClosed(EntityPlayer player) {
-		super.onCraftGuiClosed(player);
+	public void onContainerClosed(EntityPlayer player) {
+		super.onContainerClosed(player);
 		if(!rockRemoved) {
 			player.inventory.consumeInventoryItem(PrehistoryAge.rock.itemID);
 			rockRemoved = true;

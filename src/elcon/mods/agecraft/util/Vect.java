@@ -3,6 +3,7 @@ package elcon.mods.agecraft.util;
 import java.util.logging.Level;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import elcon.mods.agecraft.ACLog;
 
 public class Vect {
 	
@@ -12,7 +13,7 @@ public class Vect {
 
 	public Vect(int[] dim) {
 		if(dim.length != 3) {
-			FMLCommonHandler.instance().getFMLLogger().log(Level.INFO, "[MultiBlock] Cannot instantiate a vector with less or more than 3 points.");
+			ACLog.info("Cannot instantiate a vector with less or more than 3 points.");
 		}
 		this.x = dim[0];
 		this.y = dim[1];
