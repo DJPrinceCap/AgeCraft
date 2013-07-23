@@ -26,6 +26,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import elcon.mods.agecraft.assets.resources.ResourcesCore;
 import elcon.mods.agecraft.tech.TechTree;
 import elcon.mods.agecraft.tech.TechTreeClient;
 import elcon.mods.agecraft.tech.TechTreeComponent;
@@ -372,7 +373,7 @@ public class GuiTechTree extends GuiScreen {
 					}
 				}
 
-				mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "textures/gui/tech_tree.png"));
+				mc.renderEngine.func_110577_a(ResourcesCore.guiTechTree);
 				int var42 = k1 + var26;
 				int var41 = l1 + var27;
 
@@ -397,7 +398,7 @@ public class GuiTechTree extends GuiScreen {
 					var37.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.renderEngine, var35.itemStack, var42 + 3, var41 + 3);
 					GL11.glDisable(GL11.GL_LIGHTING);
 				} else {
-					mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "textures/gui/tech_tree_icons.png"));
+					mc.renderEngine.func_110577_a(ResourcesCore.guiTechTreeIcons);
 					drawTexturedModalRect(var42 + 3, var41 + 3, var35.iconIndex % 16 * 16, var35.iconIndex / 16 * 16, 16, 16);
 				}
 
@@ -416,7 +417,7 @@ public class GuiTechTree extends GuiScreen {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "textures/gui/tech_tree.png"));
+		mc.renderEngine.func_110577_a(ResourcesCore.guiTechTree);
 		drawTexturedModalRect(i1, j1, 0, 0, achievementsPaneWidth, achievementsPaneHeight);
 		GL11.glPopMatrix();
 		zLevel = 0.0F;

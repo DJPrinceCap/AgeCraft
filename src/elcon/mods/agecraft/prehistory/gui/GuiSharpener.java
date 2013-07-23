@@ -6,6 +6,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import elcon.mods.agecraft.assets.resources.ResourcesPrehistory;
+
 public class GuiSharpener extends GuiContainer {
 	
 	public GuiSharpener(InventorySharpener inv) {
@@ -16,7 +18,7 @@ public class GuiSharpener extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.func_110577_a(new ResourceLocation("agecraft", "textures/gui/sharpener.png"));
+		mc.renderEngine.func_110577_a(ResourcesPrehistory.guiSharpener);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 	}
 }

@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import elcon.mods.agecraft.assets.resources.ResourcesPrehistory;
 import elcon.mods.agecraft.prehistory.blocks.models.BlockModelCampfire;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 
@@ -30,7 +31,7 @@ public class TileEntityRendererCampfire extends TileEntitySpecialRenderer {
 		GL11.glPushMatrix();
 		GL11.glTranslated(x, y, z);
 		GL11.glTranslatef(0.5F, -0.5F, 0.5F);
-		func_110628_a(new ResourceLocation("agecraft", "/tile/campfire.png"));
+		func_110628_a(ResourcesPrehistory.campfire);
 		GL11.glPushMatrix();
 		model.renderModel(0.0625F);
 		GL11.glPopMatrix();

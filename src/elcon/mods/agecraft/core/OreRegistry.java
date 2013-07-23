@@ -1,7 +1,5 @@
 package elcon.mods.agecraft.core;
 
-import java.util.HashMap;
-
 import elcon.mods.agecraft.ACLog;
 
 public class OreRegistry {
@@ -28,7 +26,7 @@ public class OreRegistry {
 	public static void registerMetal(Ore ore) {
 		if(ores[ore.id] != null) {
 			ACLog.warning("[OreRegistry] Overriding existing ore (" + ores[ore.id] + ": " + ores[ore.id].name.toUpperCase() + ") with new ore (" + ore.id + ": " + ore.name.toUpperCase() + ")");
-		}	
+		}
 		ores[ore.id]= ore;
 	}
 }
