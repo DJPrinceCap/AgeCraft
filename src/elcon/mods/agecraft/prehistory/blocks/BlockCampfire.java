@@ -18,7 +18,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import elcon.mods.agecraft.ACPacketHandler;
-import elcon.mods.agecraft.prehistory.Campfire;
+import elcon.mods.agecraft.prehistory.CampfireRecipes;
 import elcon.mods.agecraft.prehistory.PrehistoryAge;
 import elcon.mods.agecraft.prehistory.tileentities.TileEntityCampfire;
 
@@ -68,8 +68,8 @@ public class BlockCampfire extends BlockContainer {
 					world.markBlockForUpdate(x, y, z);
 				}
 				return true;
-			} else if(Campfire.isFuel(player.inventory.getCurrentItem())) {
-				int value = Campfire.getFuel(player.inventory.getCurrentItem());
+			} else if(CampfireRecipes.isFuel(player.inventory.getCurrentItem())) {
+				int value = CampfireRecipes.getFuel(player.inventory.getCurrentItem());
 				if(value > 0) {
 					if(tile.isBurning) {
 						tile.fuel += value;
@@ -87,7 +87,7 @@ public class BlockCampfire extends BlockContainer {
 					}
 				}
 				return true;
-			} else if(Campfire.hasRecipe(player.inventory.getCurrentItem())) {
+			} else if(CampfireRecipes.hasRecipe(player.inventory.getCurrentItem())) {
 				if(tile.isBurning && tile.spitStage >= 3 && tile.spitStack == null) {
 					tile.spitStack = new ItemStack(player.inventory.getCurrentItem().itemID, 1, player.inventory.getCurrentItem().getItemDamage());
 					//tile.spitRotation = 0;

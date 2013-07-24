@@ -11,7 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.tileentity.TileEntity;
-import elcon.mods.agecraft.prehistory.Campfire;
+import elcon.mods.agecraft.prehistory.CampfireRecipes;
 import elcon.mods.agecraft.prehistory.blocks.BlockCampfire;
 
 public class TileEntityCampfire extends TileEntity {
@@ -151,13 +151,13 @@ public class TileEntityCampfire extends TileEntity {
 				if(!cooked && cookTime >= 2000 && cookTime < 3000) {
 					if(!worldObj.isRemote) {
 						originalStack = spitStack;
-						spitStack = Campfire.getRecipeOutput(spitStack);
+						spitStack = CampfireRecipes.getRecipeOutput(spitStack);
 						cooked = true;
 						worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 					}
 				} else if(cookTime == 3000) {
 					if(!worldObj.isRemote) {
-						spitStack = Campfire.getRecipeOutputBurned(originalStack);
+						spitStack = CampfireRecipes.getRecipeOutputBurned(originalStack);
 						
 						worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 					}

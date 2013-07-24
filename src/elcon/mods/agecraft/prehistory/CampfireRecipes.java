@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class Campfire {
+public class CampfireRecipes {
 
 	private static HashMap<Integer, HashMap<Integer, Integer>> fuelValues = new HashMap<Integer, HashMap<Integer, Integer>>();
 	private static HashMap<Integer, HashMap<Integer, ArrayList<ItemStack>>> cookRecipes = new HashMap<Integer, HashMap<Integer, ArrayList<ItemStack>>>();

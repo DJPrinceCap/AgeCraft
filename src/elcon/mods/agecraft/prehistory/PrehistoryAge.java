@@ -75,7 +75,7 @@ public class PrehistoryAge extends Age {
 	@Override
 	public void postInit() {
 		//add recipes
-		Campfire.addRecipes();
+		CampfireRecipes.addRecipes();
 		SharpenerRecipes.addRecipes();
 	}
 	
